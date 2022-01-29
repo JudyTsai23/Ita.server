@@ -3,7 +3,6 @@ package com.web.server.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +11,6 @@ import com.web.server.rest.IRestBase;
 import com.web.server.rest.RestResult;
 
 @RestController
-@CrossOrigin(value="http://localhost:8081")
 public class MessageController implements IRestBase {
 
 	@RequestMapping("/")
