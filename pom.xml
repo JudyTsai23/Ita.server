@@ -22,6 +22,8 @@
 	<modules>
 		<module>ita.rest.svc</module>
 		<module>ita.dao</module>
+		<module>ita.common</module>
+		<module>ita.aop</module>
 	</modules>
 
 	<build>
