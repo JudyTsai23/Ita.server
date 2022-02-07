@@ -1,6 +1,12 @@
 spring:
   profiles:    active: dev
-    server:
+    group:
+      dev:
+        - dev
+        - devDB
+        server:
   port: 8080
   servlet:
     encoding:      charset: UTF-8
+
+

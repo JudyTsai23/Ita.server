@@ -24,6 +24,8 @@
 		<module>ita.dao</module>
 		<module>ita.common</module>
 		<module>ita.aop</module>
+		<module>ita.service</module>
+		<module>ita.facade</module>
 	</modules>
 
 	<build>

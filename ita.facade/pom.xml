@@ -7,22 +7,20 @@
 		<artifactId>ita</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>ita.dao</artifactId>
-	<name>ita.dao</name>
+	<artifactId>ita.facade</artifactId>
 	<packaging>jar</packaging>
-
+	
 	<dependencies>
-		<!-- 讓Spring Boot可以連線mysql資料庫 -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.server</groupId>
+			<artifactId>ita.service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
-		<!-- 讓Spring Boot可以使用mybatis -->
+		
 		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>2.0.0</version>
+			<groupId>com.server</groupId>
+			<artifactId>ita.common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
