@@ -1,4 +1,4 @@
-package com.web.server.config;
+package com.web.server.cnst;
 
 public interface IAppCode {
 
