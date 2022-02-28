@@ -6,5 +6,46 @@
 	<select id="queryNews" resultMap="mybatis.mapper.entity.newsEntity">
 		SELECT * FROM NEWS
 	</select>
+	
+	<!-- 新增訊息 -->
+	<insert id="insertNews">
+		INSERT INTO NEWS (
+			ID,
+			TYPE,
+			TITLE,
+			DESCRIPTION,
+			CONTENT,
+			IMAGE,
+			PUBLISH_TIME,
+			IS_PUBLIC,
+			IS_TOP,
+			UPD_USER,
+			UPD_TIME
+		)
+		VALUES (
+			#{newsEntity.id},
+			#{newsEntity.type},
+			#{newsEntity.title},
+			#{newsEntity.description},
+			#{newsEntity.content},
+			#{newsEntity.image},
+			#{newsEntity.publishTime},
+			#{newsEntity.isPublic},
+			#{newsEntity.isTop},
+			#{newsEntity.updUser},
+			#{newsEntity.updTime}
+		)
+	</insert>
 
+	<!-- 查詢特定訊息 -->
+	<select id="querySpecNews" resultMap="mybatis.mapper.entity.newsEntity">
+		SELECT * FROM NEWS
+		WHERE ID = #{newsId}
+	</select>
+	
+	<!-- 刪除特定訊息 -->
+	<delete id="deleteSpecNews">
+		DELETE FROM NEWS WHERE ID = #{newsId}
+	</delete>
+	
 </mapper>

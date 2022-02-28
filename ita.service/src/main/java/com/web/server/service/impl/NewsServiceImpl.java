@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.web.server.bo.NewsDetailBo;
 import com.web.server.bo.NewsListBo;
 import com.web.server.dao.INewsDao;
 import com.web.server.entity.NewsEntity;
@@ -34,5 +35,32 @@ public class NewsServiceImpl implements INewsService {
 			newsBoList.add(target);
 		});
 		return newsBoList;
+	}
+	
+	/**
+	 * 新增訊息
+	 */
+	@Override
+	public void addNews(NewsEntity newsEntity) {
+		newsDao.insertNews(newsEntity);
+	}
+	
+	/**
+	 * 查詢特定訊息
+	 */
+	@Override
+	public NewsDetailBo querySpecNews(String id) {
+		NewsEntity newsEntity = newsDao.querySpecNews(id);
+		NewsDetailBo newsDetailBo = new NewsDetailBo();
+		BeanUtils.copyProperties(newsEntity, newsDetailBo);
+		return newsDetailBo;
+	}
+	
+	/**
+	 * 刪除特定訊息
+	 */
+	@Override
+	public void deleteSpecNews(String id) {
+		newsDao.deleteSpecNews(id);
 	}
 }
