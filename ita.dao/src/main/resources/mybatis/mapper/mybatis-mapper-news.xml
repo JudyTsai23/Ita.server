@@ -50,7 +50,8 @@
 	
 	<!-- 查詢特定範圍內的幾筆訊息 -->
 	<select id="querySpecRangeNews" resultMap="mybatis.mapper.entity.newsEntity">
-		SELECT * FROM NEWS ORDER BY PUBLISH_TIME LIMIT #{count} OFFSET #{overCount}
+		<!-- 依據是否置頂及發佈時間排序，讓置頂訊息為第一筆資料 -->
+		SELECT * FROM NEWS ORDER BY IS_TOP DESC, PUBLISH_TIME DESC LIMIT #{count} OFFSET #{overCount}
 	</select>
 	
 </mapper>
