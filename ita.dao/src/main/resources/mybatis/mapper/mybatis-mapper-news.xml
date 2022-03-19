@@ -4,7 +4,7 @@
 
 	<!-- 查詢所有訊息 -->
 	<select id="queryNews" resultMap="mybatis.mapper.entity.newsEntity">
-		SELECT * FROM NEWS
+		SELECT * FROM NEWS ORDER BY PUBLISH_TIME
 	</select>
 	
 	<!-- 新增訊息 -->
@@ -47,5 +47,10 @@
 	<delete id="deleteSpecNews">
 		DELETE FROM NEWS WHERE ID = #{newsId}
 	</delete>
+	
+	<!-- 查詢特定範圍內的幾筆訊息 -->
+	<select id="querySpecRangeNews" resultMap="mybatis.mapper.entity.newsEntity">
+		SELECT * FROM NEWS ORDER BY PUBLISH_TIME LIMIT #{count} OFFSET #{overCount}
+	</select>
 	
 </mapper>

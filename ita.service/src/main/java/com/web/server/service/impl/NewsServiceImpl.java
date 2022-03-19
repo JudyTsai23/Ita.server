@@ -15,7 +15,7 @@ import com.web.server.service.INewsService;
 
 @Service
 public class NewsServiceImpl implements INewsService {
-	
+
 	@Autowired
 	private INewsDao newsDao;
 
@@ -24,11 +24,8 @@ public class NewsServiceImpl implements INewsService {
 	 */
 	@Override
 	public List<NewsListBo> queryNewsList() {
-		// 去資料庫查詢
 		List<NewsEntity> newsEntityList = newsDao.queryNews();
-		// 宣告存放結果的List
 		List<NewsListBo> newsBoList = new ArrayList<>();
-		// 將需要的部分屬性複製並提取出來
 		newsEntityList.forEach((news) -> {
 			NewsListBo target = new NewsListBo();
 			BeanUtils.copyProperties(news, target);
@@ -36,7 +33,7 @@ public class NewsServiceImpl implements INewsService {
 		});
 		return newsBoList;
 	}
-	
+
 	/**
 	 * 新增訊息
 	 */
@@ -44,7 +41,7 @@ public class NewsServiceImpl implements INewsService {
 	public void addNews(NewsEntity newsEntity) {
 		newsDao.insertNews(newsEntity);
 	}
-	
+
 	/**
 	 * 查詢特定訊息
 	 */
@@ -55,12 +52,29 @@ public class NewsServiceImpl implements INewsService {
 		BeanUtils.copyProperties(newsEntity, newsDetailBo);
 		return newsDetailBo;
 	}
-	
+
 	/**
 	 * 刪除特定訊息
 	 */
 	@Override
 	public void deleteSpecNews(String id) {
 		newsDao.deleteSpecNews(id);
+	}
+
+	/**
+	 * 查詢最新幾筆訊息
+	 */
+	@Override
+	public List<NewsListBo> querySpecRangeNews(int count, int page) {
+		// 跳過的筆數
+		int overCount = count * (page - 1);
+		List<NewsEntity> newsEntityList = newsDao.querySpecRangeNews(count, overCount);
+		List<NewsListBo> newsBoList = new ArrayList<>();
+		newsEntityList.forEach((news) -> {
+			NewsListBo target = new NewsListBo();
+			BeanUtils.copyProperties(news, target);
+			newsBoList.add(target);
+		});
+		return newsBoList;
 	}
 }

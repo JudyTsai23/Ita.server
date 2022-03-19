@@ -27,4 +27,9 @@ public interface INewsService {
 	 * 刪除特定訊息
 	 */
 	void deleteSpecNews(String id);
+	
+	/**
+	 * 查詢最新幾筆訊息
+	 */
+	List<NewsListBo> querySpecRangeNews(int count, int page);
 }

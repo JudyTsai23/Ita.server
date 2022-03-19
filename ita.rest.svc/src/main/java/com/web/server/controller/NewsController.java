@@ -18,6 +18,7 @@ import com.web.server.dto.NewsListDto;
 import com.web.server.facade.INewsFacade;
 import com.web.server.rest.IRestBase;
 import com.web.server.rest.RestResult;
+import com.web.server.vo.NewsSpecVo;
 import com.web.server.vo.NewsVo;
 
 /**
@@ -33,7 +34,7 @@ public class NewsController implements IRestBase {
 	/**
 	 * 查詢訊息列表
 	 */
-	@GetMapping("")
+	@GetMapping
 	public RestResult queryNewsList() {
 		List<NewsListDto> resultList = newsFacade.queryNewsList();
 		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
@@ -42,7 +43,7 @@ public class NewsController implements IRestBase {
 	/**
 	 * 新增訊息
 	 */
-	@PostMapping("")
+	@PostMapping
 	public RestResult addNews(@RequestBody NewsVo newsVo) {
 		newsFacade.addNews(newsVo);
 		return buildResult(AppCode.SERVER.SUCCESS.INSERT_SUCCESS.getCode(), null);
@@ -73,5 +74,15 @@ public class NewsController implements IRestBase {
 	public RestResult updateNews(@PathVariable String id, @RequestBody NewsVo newsVo) {
 		newsFacade.updateNews(id, newsVo);
 		return buildResult(AppCode.SERVER.SUCCESS.UPDATE_SUCCESS.getCode(), null);
+	}
+	
+	
+	/**
+	 * 查詢特定範圍內的幾筆訊息
+	 */
+	@PostMapping("/range")
+	public RestResult querySpecRangeNews(@RequestBody NewsSpecVo newsSpecVo) {
+		List<NewsListDto> resultList = newsFacade.querySpecRangeNews(newsSpecVo);
+		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
 	}
 }

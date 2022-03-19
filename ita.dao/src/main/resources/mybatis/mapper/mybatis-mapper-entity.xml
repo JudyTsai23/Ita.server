@@ -5,7 +5,7 @@
 	<!-- 訊息Entity -->
 	<resultMap id="newsEntity" type="com.web.server.entity.NewsEntity">
 		<result column="ID" property="id" />
-		<result column="TYPE" property="type" />
+		<result column="TYPE" property="type" typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
 		<result column="TITLE" property="title" />
 		<result column="DESCRIPTION" property="description" />
 		<result column="CONTENT" property="content" />

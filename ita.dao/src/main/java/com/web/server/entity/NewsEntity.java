@@ -2,10 +2,12 @@ package com.web.server.entity;
 
 import java.time.LocalDateTime;
 
+import com.web.server.enumcnst.NewsType;
+
 public class NewsEntity {
 
 	private String id; // 訊息流水號
-	private String type; // 訊息種類
+	private NewsType type; // 訊息種類
 	private String title; // 訊息標題
 	private String description; // 訊息描述
 	private String content; // 訊息內文
@@ -24,11 +26,11 @@ public class NewsEntity {
 		this.id = id;
 	}
 
-	public String getType() {
+	public NewsType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(NewsType type) {
 		this.type = type;
 	}
 

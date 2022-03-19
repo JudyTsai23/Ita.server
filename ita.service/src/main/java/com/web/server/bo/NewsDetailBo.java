@@ -1,9 +1,11 @@
 package com.web.server.bo;
 
+import com.web.server.enumcnst.NewsType;
+
 public class NewsDetailBo {
 
 	private String id; // 訊息流水號
-	private String type; // 訊息種類
+	private NewsType type; // 訊息種類
 	private String title; // 訊息標題
 	private String content; // 訊息內文
 	private String image; // 圖片
@@ -19,11 +21,11 @@ public class NewsDetailBo {
 		this.id = id;
 	}
 
-	public String getType() {
+	public NewsType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(NewsType type) {
 		this.type = type;
 	}
 

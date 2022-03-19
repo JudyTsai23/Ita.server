@@ -16,6 +16,7 @@ import com.web.server.entity.NewsEntity;
 import com.web.server.facade.INewsFacade;
 import com.web.server.service.INewsService;
 import com.web.server.util.NumberGenerator;
+import com.web.server.vo.NewsSpecVo;
 import com.web.server.vo.NewsVo;
 
 @Component
@@ -33,6 +34,7 @@ public class NewsFacadeImpl implements INewsFacade {
 		List<NewsListDto> newsDtoList = new ArrayList<>();
 		newsBoList.forEach((news) -> {
 			NewsListDto target = new NewsListDto();
+			target.setType(news.getType().getTypeName());
 			BeanUtils.copyProperties(news, target);
 			newsDtoList.add(target);
 		});
@@ -61,6 +63,7 @@ public class NewsFacadeImpl implements INewsFacade {
 	public NewsDetailDto querySpecNews(String id) {
 		NewsDetailBo newsDetailBo = newsService.querySpecNews(id);
 		NewsDetailDto newsDetailDto = new NewsDetailDto();
+		newsDetailDto.setType(newsDetailBo.getType().getTypeName());
 		BeanUtils.copyProperties(newsDetailBo, newsDetailDto);
 		return newsDetailDto;
 	}
@@ -88,4 +91,19 @@ public class NewsFacadeImpl implements INewsFacade {
 		newsService.addNews(newsEntity);
 	}
 
+	/**
+	 * 查詢幾筆訊息
+	 */
+	@Override
+	public List<NewsListDto> querySpecRangeNews(NewsSpecVo newsSpecVo) {
+		List<NewsListBo> newsBoList = newsService.querySpecRangeNews(newsSpecVo.getCount(), newsSpecVo.getPage());
+		List<NewsListDto> newsDtoList = new ArrayList<>();
+		newsBoList.forEach((news) -> {
+			NewsListDto target = new NewsListDto();
+			target.setType(news.getType().getTypeName());
+			BeanUtils.copyProperties(news, target);
+			newsDtoList.add(target);
+		});
+		return newsDtoList;
+	}
 }
