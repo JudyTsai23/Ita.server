@@ -16,5 +16,22 @@
 		<result column="UPD_USER" property="updUser" />
 		<result column="UPD_TIME" property="updTime" />
 	</resultMap>
+
+	<!-- 餐點Entity -->
+	<resultMap id="menuEntity" type="com.web.server.entity.MenuEntity">
+		<result column="ID" property="id" />
+		<result column="CATEGORY" property="category" typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
+		<result column="SUB_CATEGORY" property="subCategory"  typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
+		<result column="NAME" property="name" />
+		<result column="DESCRIPTION" property="description" />
+		<result column="INGREDIENT" property="ingredient" />
+		<result column="NOTE" property="note" />
+		<result column="PRICE" property="price" />
+		<result column="IMAGE" property="image" />
+		<result column="ADDED_TIME" property="addedTime" />
+		<result column="IS_LIMITED" property="isLimited" />
+		<result column="IS_PUBLIC" property="isPublic" />
+		<result column="UPD_TIME" property="updTime" />
+	</resultMap>
 	
 </mapper>
