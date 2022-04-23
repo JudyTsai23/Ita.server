@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.server.dao.IMenuDao">
+
+	<!-- 查詢所有餐點 -->
+	<select id="queryMenu" resultMap="mybatis.mapper.entity.menuEntity">
+		SELECT * FROM MEALS
+		WHERE IS_PUBLIC = 1
+		ORDER BY CATEGORY ASC, SUB_CATEGORY ASC
+	</select>
+	
+	<!-- 查詢特定種類的餐點 -->
+	<select id="queryCategoryMenu" resultMap="mybatis.mapper.entity.menuEntity">
+		SELECT * FROM MEALS
+		WHERE CATEGORY = #{category} AND IS_PUBLIC = 1
+		ORDER BY SUB_CATEGORY ASC
+	</select>
+
+	<!-- 新增餐點 -->
+	<insert id="insertMenu">
+		INSERT INTO MEALS (
+			ID,
+			CATEGORY,
+			SUB_CATEGORY,
+			NAME,
+			DESCRIPTION,
+			INGREDIENT,
+			NOTE,
+			PRICE,
+			IMAGE,
+			ADDED_TIME,
+			IS_LIMITED,
+			IS_PUBLIC,
+			UPD_TIME
+		)
+		VALUES (
+			#{menuEntity.id},
+			#{menuEntity.category},
+			#{menuEntity.subCategory},
+			#{menuEntity.name},
+			#{menuEntity.description},
+			#{menuEntity.ingredient},
+			#{menuEntity.note},
+			#{menuEntity.price},
+			#{menuEntity.image},
+			#{menuEntity.addedTime},
+			#{menuEntity.isLimited},
+			#{menuEntity.isPublic},
+			#{menuEntity.updTime}
+		)
+	</insert>
+
+	<!-- 查詢特定餐點 -->
+	<select id="querySpecMenu" resultMap="mybatis.mapper.entity.menuEntity">
+		SELECT * FROM MEALS
+		WHERE ID = #{menuId}
+	</select>
+	
+	<!-- 刪除特定餐點 -->
+	<delete id="deleteSpecMenu">
+		DELETE FROM MEALS WHERE ID = #{menuId}
+	</delete>
+	
+</mapper>
