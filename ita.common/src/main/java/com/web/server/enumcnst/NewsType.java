@@ -28,5 +28,4 @@ public enum NewsType {
 	public void setTypeCd(int typeCd) {
 		this.typeCd = typeCd;
 	}
-	
 }
