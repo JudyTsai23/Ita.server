@@ -2,10 +2,11 @@ package com.web.server.enumcnst;
 
 public enum MenuSubCategory {
 
-	RED_SAUCE( "紅醬",0),
-    WHITE_SAUCE("白醬",1),
-    RED_WINE("紅酒",2),
-    WHITE_WINE("白酒",3);
+	NONE( "",0),
+	RED_SAUCE( "紅醬",1),
+    WHITE_SAUCE("白醬",2),
+    RED_WINE("紅酒",3),
+    WHITE_WINE("白酒",4);
 	
 	private String categoryName;
 	private int categoryCd;
