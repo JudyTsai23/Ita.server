@@ -62,7 +62,7 @@ public class NewsServiceImpl implements INewsService {
 	}
 
 	/**
-	 * 查詢最新幾筆訊息
+	 * 查詢特定範圍內的幾筆訊息
 	 */
 	@Override
 	public List<NewsListBo> querySpecRangeNews(int count, int page) {
@@ -76,5 +76,15 @@ public class NewsServiceImpl implements INewsService {
 			newsBoList.add(target);
 		});
 		return newsBoList;
+	}
+
+	/**
+	 * 查詢訊息總筆數
+	 */
+	@Override
+	public int queryTotalNewsCount() {
+		// 查詢總筆數
+		int totalCount = newsDao.queryTotalNewsCount();
+		return totalCount;
 	}
 }

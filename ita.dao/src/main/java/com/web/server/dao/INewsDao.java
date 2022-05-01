@@ -34,4 +34,9 @@ public interface INewsDao {
 	 * 查詢最新幾筆訊息
 	 */
 	List<NewsEntity> querySpecRangeNews(@Param(value = "count") int count, @Param(value = "overCount") int overCount);
+	
+	/**
+	 * 查詢總筆數
+	 */
+	int queryTotalNewsCount();
 }

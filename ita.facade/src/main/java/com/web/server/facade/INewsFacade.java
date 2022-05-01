@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.web.server.dto.NewsDetailDto;
 import com.web.server.dto.NewsListDto;
+import com.web.server.dto.NewsRangeDto;
 import com.web.server.vo.NewsSpecVo;
 import com.web.server.vo.NewsVo;
 
@@ -35,7 +36,7 @@ public interface INewsFacade {
 	void updateNews(String id, NewsVo newsVo);
 	
 	/**
-	 * 查詢最新的幾筆訊息
+	 * 查詢特定範圍內的訊息
 	 */
-	List<NewsListDto> querySpecRangeNews(NewsSpecVo newsSpecVo);
+	NewsRangeDto querySpecRangeNews(NewsSpecVo newsSpecVo);
 }

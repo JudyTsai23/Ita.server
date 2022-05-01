@@ -12,6 +12,7 @@ import com.web.server.bo.NewsDetailBo;
 import com.web.server.bo.NewsListBo;
 import com.web.server.dto.NewsDetailDto;
 import com.web.server.dto.NewsListDto;
+import com.web.server.dto.NewsRangeDto;
 import com.web.server.entity.NewsEntity;
 import com.web.server.facade.INewsFacade;
 import com.web.server.service.INewsService;
@@ -92,18 +93,15 @@ public class NewsFacadeImpl implements INewsFacade {
 	}
 
 	/**
-	 * 查詢幾筆訊息
+	 * 查詢特定範圍內的訊息
 	 */
 	@Override
-	public List<NewsListDto> querySpecRangeNews(NewsSpecVo newsSpecVo) {
+	public NewsRangeDto querySpecRangeNews(NewsSpecVo newsSpecVo) {
 		List<NewsListBo> newsBoList = newsService.querySpecRangeNews(newsSpecVo.getCount(), newsSpecVo.getPage());
-		List<NewsListDto> newsDtoList = new ArrayList<>();
-		newsBoList.forEach((news) -> {
-			NewsListDto target = new NewsListDto();
-			target.setType(news.getType().getTypeName());
-			BeanUtils.copyProperties(news, target);
-			newsDtoList.add(target);
-		});
-		return newsDtoList;
+		int totalCount = newsService.queryTotalNewsCount();
+		NewsRangeDto rangeDto = new NewsRangeDto();
+		rangeDto.setTotal(totalCount);
+		rangeDto.setList(newsBoList);
+		return rangeDto;
 	}
 }

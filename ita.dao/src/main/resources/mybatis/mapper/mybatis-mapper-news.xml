@@ -54,4 +54,9 @@
 		SELECT * FROM NEWS ORDER BY IS_TOP DESC, PUBLISH_TIME DESC LIMIT #{count} OFFSET #{overCount}
 	</select>
 	
+	<!-- 查詢總筆數 -->
+	<select id="queryTotalNewsCount" resultType="java.lang.Integer">
+		SELECT COUNT(ID) FROM NEWS
+	</select>
+	
 </mapper>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.server.cnst.AppCode;
 import com.web.server.dto.NewsDetailDto;
 import com.web.server.dto.NewsListDto;
+import com.web.server.dto.NewsRangeDto;
 import com.web.server.facade.INewsFacade;
 import com.web.server.rest.IRestBase;
 import com.web.server.rest.RestResult;
@@ -78,11 +79,11 @@ public class NewsController implements IRestBase {
 	
 	
 	/**
-	 * 查詢特定範圍內的幾筆訊息
+	 * 查詢特定範圍內的訊息
 	 */
 	@PostMapping("/range")
 	public RestResult querySpecRangeNews(@RequestBody NewsSpecVo newsSpecVo) {
-		List<NewsListDto> resultList = newsFacade.querySpecRangeNews(newsSpecVo);
+		NewsRangeDto resultList = newsFacade.querySpecRangeNews(newsSpecVo);
 		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
 	}
 }

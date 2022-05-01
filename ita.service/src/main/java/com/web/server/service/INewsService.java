@@ -29,7 +29,12 @@ public interface INewsService {
 	void deleteSpecNews(String id);
 	
 	/**
-	 * 查詢最新幾筆訊息
+	 * 查詢特定範圍內的幾筆訊息
 	 */
 	List<NewsListBo> querySpecRangeNews(int count, int page);
+	
+	/**
+	 * 查詢訊息總筆數
+	 */
+	int queryTotalNewsCount();
 }
