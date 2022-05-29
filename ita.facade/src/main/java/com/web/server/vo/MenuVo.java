@@ -1,33 +1,37 @@
 package com.web.server.vo;
 
+import com.web.server.enumcnst.MenuCategory;
+import com.web.server.enumcnst.MenuSubCategory;
+
 public class MenuVo {
 
-	private String category;	// 餐點種類
-	private String subCategory;	// 餐點次分類
+	private MenuCategory category;	// 餐點種類
+	private MenuSubCategory subCategory;	// 餐點次分類
 	private String name;		// 餐點名稱
 	private String description;	// 餐點描述
 	private String ingredient;	// 內容物
 	private String note;		// 餐點提醒
 	private int price;			// 價格
 	private String image;		// 餐點圖片
-	private String isLimited;	// 
+	private int limitDate;		// 期間限定的下架日期
+	private int sort;		// 餐點排序
 	private String isPublic;	// 是否公開
 
 
 
-	public String getCategory() {
+	public MenuCategory getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(MenuCategory category) {
 		this.category = category;
 	}
 
-	public String getSubCategory() {
+	public MenuSubCategory getSubCategory() {
 		return subCategory;
 	}
 
-	public void setSubCategory(String subCategory) {
+	public void setSubCategory(MenuSubCategory subCategory) {
 		this.subCategory = subCategory;
 	}
 
@@ -79,12 +83,20 @@ public class MenuVo {
 		this.image = image;
 	}
 
-	public String getIsLimited() {
-		return isLimited;
+	public int getLimitDate() {
+		return limitDate;
 	}
 
-	public void setIsLimited(String isLimited) {
-		this.isLimited = isLimited;
+	public void setLimitDate(int limitDate) {
+		this.limitDate = limitDate;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 	public String getIsPublic() {

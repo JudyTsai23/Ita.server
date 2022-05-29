@@ -13,6 +13,7 @@ import com.web.server.dto.MenuListDto;
 import com.web.server.entity.MenuEntity;
 import com.web.server.facade.IMenuFacade;
 import com.web.server.service.IMenuService;
+import com.web.server.util.DateTimeGenerator;
 import com.web.server.util.NumberGenerator;
 import com.web.server.vo.MenuVo;
 
@@ -27,7 +28,9 @@ public class MenuFacadeImpl implements IMenuFacade {
 	 */
 	@Override
 	public List<MenuListDto> queryMenuList() {
-		List<MenuListBo> menuBoList = menuService.queryMenuList();
+		int today = Integer.parseInt(DateTimeGenerator.getCurrentDate_YYYYMMdd());
+		
+		List<MenuListBo> menuBoList = menuService.queryMenuList(today);
 		List<MenuListDto> menuDtoList = new ArrayList<>();
 		menuBoList.forEach((menu) -> {
 			MenuListDto target = new MenuListDto();
@@ -49,6 +52,7 @@ public class MenuFacadeImpl implements IMenuFacade {
 		MenuEntity menuEntity = new MenuEntity();
 		BeanUtils.copyProperties(menuVo, menuEntity);
 		menuEntity.setId(serialNum);
+		menuEntity.setAddedTime(LocalDateTime.now());
 		menuEntity.setUpdTime(LocalDateTime.now());
 		
 		menuService.addMenu(menuEntity);
@@ -85,6 +89,7 @@ public class MenuFacadeImpl implements IMenuFacade {
 		MenuEntity menuEntity = new MenuEntity();
 		BeanUtils.copyProperties(menuVo, menuEntity);
 		menuEntity.setId(id);
+		menuEntity.setAddedTime(LocalDateTime.now());
 		menuEntity.setUpdTime(LocalDateTime.now());
 		
 		menuService.addMenu(menuEntity);
@@ -95,7 +100,9 @@ public class MenuFacadeImpl implements IMenuFacade {
 	 */
 	@Override
 	public List<MenuListDto> queryCategoryMenu(String category) {
-		List<MenuListBo> menuBoList = menuService.queryCategoryMenu(category);
+		int today = Integer.parseInt(DateTimeGenerator.getCurrentDate_YYYYMMdd());
+
+		List<MenuListBo> menuBoList = menuService.queryCategoryMenu(category, today);
 		List<MenuListDto> menuDtoList = new ArrayList<>();
 		menuBoList.forEach((menu) -> {
 			MenuListDto target = new MenuListDto();

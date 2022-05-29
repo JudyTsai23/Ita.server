@@ -14,6 +14,7 @@ public class MenuListBo {
 	private String note;		// 餐點提醒
 	private int price;			// 價格
 	private String image;		// 餐點圖片
+	private int limitDate;			// 期間限定的下架日期
 
 
 	public String getId() {
@@ -86,6 +87,14 @@ public class MenuListBo {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public int getLimitDate() {
+		return limitDate;
+	}
+
+	public void setLimitDate(int limitDate) {
+		this.limitDate = limitDate;
 	}
 
 }

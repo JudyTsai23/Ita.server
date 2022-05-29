@@ -10,7 +10,7 @@ public interface IMenuService {
 	/**
 	 * 查詢所有餐點列表
 	 */
-	List<MenuListBo> queryMenuList();
+	List<MenuListBo> queryMenuList(int today);
 	
 	/**
 	 * 新增餐點
@@ -30,5 +30,5 @@ public interface IMenuService {
 	/**
 	 * 查詢特定種類的餐點
 	 */
-	List<MenuListBo> queryCategoryMenu(String category);
+	List<MenuListBo> queryCategoryMenu(String category, int today);
 }

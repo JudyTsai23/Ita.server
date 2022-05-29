@@ -13,7 +13,7 @@ public interface IMenuDao {
 	/**
 	 * 查詢所有餐點
 	 */
-	List<MenuEntity> queryMenu();
+	List<MenuEntity> queryMenu(@Param(value = "today") int today);
 
 	/**
 	 * 新增餐點
@@ -33,5 +33,5 @@ public interface IMenuDao {
 	/**
 	 * 查詢特定種類的餐點
 	 */
-	List<MenuEntity> queryCategoryMenu(@Param(value = "category") String category);
+	List<MenuEntity> queryCategoryMenu(@Param(value = "category") String category, @Param(value = "today") int today);
 }

@@ -7,19 +7,20 @@ import com.web.server.enumcnst.MenuSubCategory;
 
 public class MenuEntity {
 
-	private String id;								// 餐點流水號
-	private MenuCategory category;				// 餐點種類
-	private MenuSubCategory subCategory; 			// 餐點次分類
-	private String name;							// 餐點名稱
+	private String id;						// 餐點流水號
+	private MenuCategory category;			// 餐點種類
+	private MenuSubCategory subCategory; 	// 餐點次分類
+	private String name;					// 餐點名稱
 	private String description;				// 餐點描述
 	private String ingredient;				// 內容物
-	private String note;							// 餐點提醒
-	private int price;								// 價格
-	private String image;							// 餐點圖片
-	private LocalDateTime addedTime;	// 創建時間
-	private String isLimited;					// 
-	private String isPublic;					// 是否公開
-	private LocalDateTime updTime;		// 異動時間
+	private String note;					// 餐點提醒
+	private int price;						// 價格
+	private String image;					// 餐點圖片
+	private LocalDateTime addedTime;		// 創建時間
+	private int limitDate;					// 期間限定的下架日期
+	private int sort;						// 餐點排序
+	private String isPublic;				// 是否公開
+	private LocalDateTime updTime;			// 異動時間
 	
 
 
@@ -103,12 +104,20 @@ public class MenuEntity {
 		this.addedTime = addedTime;
 	}
 
-	public String getIsLimited() {
-		return isLimited;
+	public int getLimitDate() {
+		return limitDate;
 	}
 
-	public void setIsLimited(String isLimited) {
-		this.isLimited = isLimited;
+	public void setLimitDate(int limitDate) {
+		this.limitDate = limitDate;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 	public String getIsPublic() {

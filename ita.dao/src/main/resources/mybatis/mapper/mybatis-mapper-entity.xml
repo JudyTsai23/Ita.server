@@ -29,7 +29,8 @@
 		<result column="PRICE" property="price" />
 		<result column="IMAGE" property="image" />
 		<result column="ADDED_TIME" property="addedTime" />
-		<result column="IS_LIMITED" property="isLimited" />
+		<result column="LIMIT_DATE" property="limitDate" />
+		<result column="SORT" property="sort" />
 		<result column="IS_PUBLIC" property="isPublic" />
 		<result column="UPD_TIME" property="updTime" />
 	</resultMap>

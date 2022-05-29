@@ -22,8 +22,8 @@ public class MenuServiceImpl implements IMenuService {
 	 * 查詢所有餐點列表
 	 */
 	@Override
-	public List<MenuListBo> queryMenuList() {
-		List<MenuEntity> menuEntityList = menuDao.queryMenu();
+	public List<MenuListBo> queryMenuList(int today) {
+		List<MenuEntity> menuEntityList = menuDao.queryMenu(today);
 		List<MenuListBo> menuBoList = new ArrayList<>();
 		menuEntityList.forEach((menu) -> {
 			MenuListBo target = new MenuListBo();
@@ -64,8 +64,8 @@ public class MenuServiceImpl implements IMenuService {
 	 * 查詢特定種類的餐點
 	 */
 	@Override
-	public List<MenuListBo> queryCategoryMenu(String category) {
-		List<MenuEntity> menuEntityList = menuDao.queryCategoryMenu(category);
+	public List<MenuListBo> queryCategoryMenu(String category, int today) {
+		List<MenuEntity> menuEntityList = menuDao.queryCategoryMenu(category, today);
 		List<MenuListBo> menuBoList = new ArrayList<>();
 		menuEntityList.forEach((menu) -> {
 			MenuListBo target = new MenuListBo();

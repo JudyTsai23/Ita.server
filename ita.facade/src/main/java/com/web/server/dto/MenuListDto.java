@@ -2,15 +2,16 @@ package com.web.server.dto;
 
 public class MenuListDto {
 
-	private String id;								// 餐點流水號
-	private String category;					// 餐點種類
-	private String subCategory; 			// 餐點次分類
-	private String name;							// 餐點名稱
-	private String description;				// 餐點描述
-	private String ingredient;				// 內容物
-	private String note;							// 餐點提醒
-	private int price;								// 價格
-	private String image;							// 餐點圖片
+	private String id;				// 餐點流水號
+	private String category;		// 餐點種類
+	private String subCategory; 	// 餐點次分類
+	private String name;			// 餐點名稱
+	private String description;		// 餐點描述
+	private String ingredient;		// 內容物
+	private String note;			// 餐點提醒
+	private int price;				// 價格
+	private String image;			// 餐點圖片
+	private int limitDate;			// 期間限定的下架日期
 
 
 	public String getId() {
@@ -83,6 +84,14 @@ public class MenuListDto {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public int getLimitDate() {
+		return limitDate;
+	}
+
+	public void setLimitDate(int limitDate) {
+		this.limitDate = limitDate;
 	}
 
 }
