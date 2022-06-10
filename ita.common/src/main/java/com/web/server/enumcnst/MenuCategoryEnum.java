@@ -1,6 +1,6 @@
 package com.web.server.enumcnst;
 
-public enum MenuCategory {
+public enum MenuCategoryEnum {
 
 	SALAD( "沙拉",0),
     PASTA("義大利麵",1),
@@ -12,7 +12,7 @@ public enum MenuCategory {
 	private String categoryName;
 	private int categoryCd;
 	
-	private MenuCategory(String name, int cd) {
+	private MenuCategoryEnum(String name, int cd) {
 		this.categoryName = name;
 		this.categoryCd = cd;
 	}

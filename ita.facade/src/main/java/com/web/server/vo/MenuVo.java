@@ -1,11 +1,11 @@
 package com.web.server.vo;
 
-import com.web.server.enumcnst.MenuCategory;
+import com.web.server.enumcnst.MenuCategoryEnum;
 import com.web.server.enumcnst.MenuSubCategory;
 
 public class MenuVo {
 
-	private MenuCategory category;	// 餐點種類
+	private MenuCategoryEnum category;	// 餐點種類
 	private MenuSubCategory subCategory;	// 餐點次分類
 	private String name;		// 餐點名稱
 	private String description;	// 餐點描述
@@ -19,11 +19,11 @@ public class MenuVo {
 
 
 
-	public MenuCategory getCategory() {
+	public MenuCategoryEnum getCategory() {
 		return category;
 	}
 
-	public void setCategory(MenuCategory category) {
+	public void setCategory(MenuCategoryEnum category) {
 		this.category = category;
 	}
 

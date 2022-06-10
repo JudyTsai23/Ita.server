@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.server.dao.IMenuCategoryDao">
+
+	<!-- 查詢所有餐點種類 -->
+	<select id="queryMenuCategory" resultMap="mybatis.mapper.entity.menuCategoryEntity">
+		SELECT * FROM CATEGORY ORDER BY -SORT DESC
+		<!-- 說明：因為 ORDER BY 會是 NULL < 1 < 2 <...，所以需要加上負號並遞減排序 -->
+	</select>
+
+	<!-- 新增餐點種類 -->
+	<insert id="insertMenuCategory">
+		INSERT INTO CATEGORY (
+			ID,
+			NAME,
+			ZH_NAME,
+			ICON,
+			SORT
+		)
+		VALUES (
+			#{menuCategoryEntity.id},
+			#{menuCategoryEntity.name},
+			#{menuCategoryEntity.zhName},
+			#{menuCategoryEntity.icon},
+			#{menuCategoryEntity.sort}
+		)
+	</insert>
+
+	<!-- 查詢特定餐點種類 -->
+	<select id="querySpecMenuCategory" resultMap="mybatis.mapper.entity.menuCategoryEntity">
+		SELECT * FROM CATEGORY
+		WHERE ID = #{menuCategoryId}
+	</select>
+	
+	<!-- 刪除特定餐點種類 -->
+	<delete id="deleteSpecMenuCategory">
+		DELETE FROM CATEGORY WHERE ID = #{menuCategoryId}
+	</delete>
+	
+</mapper>

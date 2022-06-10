@@ -34,5 +34,14 @@
 		<result column="IS_PUBLIC" property="isPublic" />
 		<result column="UPD_TIME" property="updTime" />
 	</resultMap>
+
+	<!-- 餐點種類Entity -->
+	<resultMap id="menuCategoryEntity" type="com.web.server.entity.MenuCategoryEntity">
+		<result column="ID" property="id" />
+		<result column="NAME" property="name" />
+		<result column="ZH_NAME" property="zhName" />
+		<result column="ICON" property="icon" />
+		<result column="SORT" property="sort" />
+	</resultMap>
 	
 </mapper>
