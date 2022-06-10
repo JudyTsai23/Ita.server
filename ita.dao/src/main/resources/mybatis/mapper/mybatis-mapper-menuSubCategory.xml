@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.server.dao.IMenuSubCategoryDao">
+
+	<!-- 查詢所有餐點次分類 -->
+	<select id="queryMenuSubCategory" resultMap="mybatis.mapper.entity.menuSubCategoryEntity">
+		SELECT * FROM SUB_CATEGORY ORDER BY -SORT DESC
+		<!-- 說明：因為 ORDER BY 會是 NULL < 1 < 2 <...，所以需要加上負號並遞減排序 -->
+	</select>
+
+	<!-- 新增餐點次分類 -->
+	<insert id="insertMenuSubCategory">
+		INSERT INTO SUB_CATEGORY (
+			ID,
+			NAME,
+			CATEGORY_ID,
+			SORT
+		)
+		VALUES (
+			#{menuSubCategoryEntity.id},
+			#{menuSubCategoryEntity.name},
+			#{menuSubCategoryEntity.categoryId},
+			#{menuSubCategoryEntity.sort}
+		)
+	</insert>
+
+	<!-- 刪除特定餐點次分類 -->
+	<delete id="deleteSpecMenuSubCategory">
+		DELETE FROM SUB_CATEGORY WHERE ID = #{menuSubCategoryId}
+	</delete>
+
+	<!-- 查詢特定餐點種類的餐點次分類 -->
+	<select id="querySpecCategoryMenuSubCategory" resultMap="mybatis.mapper.entity.menuSubCategoryEntity">
+		SELECT * FROM SUB_CATEGORY
+		WHERE CATEGORY_ID = #{menuCategoryId}
+		ORDER BY -SORT DESC
+		<!-- 說明：因為 ORDER BY 會是 NULL < 1 < 2 <...，所以需要加上負號並遞減排序 -->
+	</select>
+	
+</mapper>

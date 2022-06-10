@@ -43,5 +43,13 @@
 		<result column="ICON" property="icon" />
 		<result column="SORT" property="sort" />
 	</resultMap>
+
+	<!-- 餐點次分類Entity -->
+	<resultMap id="menuSubCategoryEntity" type="com.web.server.entity.MenuSubCategoryEntity">
+		<result column="ID" property="id" />
+		<result column="NAME" property="name" />
+		<result column="CATEGORY_ID" property="categoryId" />
+		<result column="SORT" property="sort" />
+	</resultMap>
 	
 </mapper>

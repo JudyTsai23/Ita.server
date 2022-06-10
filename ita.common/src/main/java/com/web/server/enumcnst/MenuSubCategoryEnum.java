@@ -1,6 +1,6 @@
 package com.web.server.enumcnst;
 
-public enum MenuSubCategory {
+public enum MenuSubCategoryEnum {
 
 	NONE( "",0),
 	RED_SAUCE( "紅醬",1),
@@ -11,7 +11,7 @@ public enum MenuSubCategory {
 	private String categoryName;
 	private int categoryCd;
 	
-	private MenuSubCategory(String name, int cd) {
+	private MenuSubCategoryEnum(String name, int cd) {
 		this.categoryName = name;
 		this.categoryCd = cd;
 	}

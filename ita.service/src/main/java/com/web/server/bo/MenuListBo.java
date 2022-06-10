@@ -1,13 +1,13 @@
 package com.web.server.bo;
 
 import com.web.server.enumcnst.MenuCategoryEnum;
-import com.web.server.enumcnst.MenuSubCategory;
+import com.web.server.enumcnst.MenuSubCategoryEnum;
 
 public class MenuListBo {
 
 	private String id;			// 餐點流水號
 	private MenuCategoryEnum category;	// 餐點種類
-	private MenuSubCategory subCategory;	// 餐點次分類
+	private MenuSubCategoryEnum subCategory;	// 餐點次分類
 	private String name;		// 餐點名稱
 	private String description;	// 餐點描述
 	private String ingredient;	// 內容物
@@ -33,11 +33,11 @@ public class MenuListBo {
 		this.category = category;
 	}
 
-	public MenuSubCategory getSubCategory() {
+	public MenuSubCategoryEnum getSubCategory() {
 		return subCategory;
 	}
 
-	public void setSubCategory(MenuSubCategory subCategory) {
+	public void setSubCategory(MenuSubCategoryEnum subCategory) {
 		this.subCategory = subCategory;
 	}
 
