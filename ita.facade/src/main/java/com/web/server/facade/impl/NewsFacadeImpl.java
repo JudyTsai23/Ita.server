@@ -99,9 +99,19 @@ public class NewsFacadeImpl implements INewsFacade {
 	public NewsRangeDto querySpecRangeNews(NewsSpecVo newsSpecVo) {
 		List<NewsListBo> newsBoList = newsService.querySpecRangeNews(newsSpecVo.getCount(), newsSpecVo.getPage());
 		int totalCount = newsService.queryTotalNewsCount();
+		
+		// 先轉換過名稱
+		List<NewsListDto> newsDtoList = new ArrayList<>();
+		newsBoList.forEach((news) -> {
+			NewsListDto target = new NewsListDto();
+			target.setType(news.getType().getTypeName());
+			BeanUtils.copyProperties(news, target);
+			newsDtoList.add(target);
+		});
+		
 		NewsRangeDto rangeDto = new NewsRangeDto();
 		rangeDto.setTotal(totalCount);
-		rangeDto.setList(newsBoList);
+		rangeDto.setList(newsDtoList);
 		return rangeDto;
 	}
 }

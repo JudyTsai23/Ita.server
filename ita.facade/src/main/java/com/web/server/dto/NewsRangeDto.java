@@ -2,12 +2,10 @@ package com.web.server.dto;
 
 import java.util.List;
 
-import com.web.server.bo.NewsListBo;
-
 public class NewsRangeDto {
 
 	private int total;
-	private List<NewsListBo> list;
+	private List<NewsListDto> list;
 	
 	public int getTotal() {
 		return total;
@@ -17,11 +15,11 @@ public class NewsRangeDto {
 		this.total = total;
 	}
 	
-	public List<NewsListBo> getList() {
+	public List<NewsListDto> getList() {
 		return list;
 	}
 	
-	public void setList(List<NewsListBo> list) {
+	public void setList(List<NewsListDto> list) {
 		this.list = list;
 	}
 }
