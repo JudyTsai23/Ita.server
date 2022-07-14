@@ -1,10 +1,10 @@
-package com.web.server.entity;
+package com.web.server.bo;
 
-public class MenuSubCategoryEntity {
+public class MenuSubCategoryBo {
 
 	private int id;
-	private String name;
-	private int categoryId;
+	private String name; 			// 餐點次分類名稱
+	private int categoryId; 		// 餐點次分類所屬的種類ID
 	private int sort;
 
 	public int getId() {

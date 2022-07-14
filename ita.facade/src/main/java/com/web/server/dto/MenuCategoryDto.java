@@ -1,12 +1,11 @@
-package com.web.server.entity;
+package com.web.server.dto;
 
-public class MenuCategoryEntity {
+public class MenuCategoryDto {
 
-	private int id;
-	private String name;
-	private String zhName;
-	private String icon;
-	private int sort;
+	private int id;			// 餐點種類流水號
+	private String name;		// 餐點種類名稱
+	private String zhName;		// 餐點種類中文名稱
+	private String icon;		// 餐點種類圖示檔案名稱
 
 	public int getId() {
 		return id;
@@ -39,13 +38,4 @@ public class MenuCategoryEntity {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-
-	public int getSort() {
-		return sort;
-	}
-
-	public void setSort(int sort) {
-		this.sort = sort;
-	}
-
 }

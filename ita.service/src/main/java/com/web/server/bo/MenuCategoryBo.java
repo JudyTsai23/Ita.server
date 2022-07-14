@@ -1,11 +1,11 @@
-package com.web.server.entity;
+package com.web.server.bo;
 
-public class MenuCategoryEntity {
+public class MenuCategoryBo {
 
-	private int id;
-	private String name;
-	private String zhName;
-	private String icon;
+	private int id; 			// 餐點種類流水號
+	private String name; 		// 餐點種類名稱
+	private String zhName; 		// 餐點種類中文名稱
+	private String icon; 		// 餐點種類圖示檔案名稱
 	private int sort;
 
 	public int getId() {

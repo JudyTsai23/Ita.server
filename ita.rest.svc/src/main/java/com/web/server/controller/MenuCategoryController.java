@@ -1,6 +1,7 @@
 package com.web.server.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,74 +14,95 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.server.cnst.AppCode;
-import com.web.server.dto.MenuCategoryListDto;
-import com.web.server.dto.MenuCategoryDetailDto;
+import com.web.server.dto.MenuCategoryDto;
+import com.web.server.dto.MenuCategoryInfoDto;
 import com.web.server.facade.IMenuCategoryFacade;
 import com.web.server.rest.IRestBase;
 import com.web.server.rest.RestResult;
-import com.web.server.vo.MenuCategoryVo;
+import com.web.server.vo.MenuCategoryInfoVo;
+import com.web.server.vo.SortVo;
 
 /**
- * 餐點種類
+ * 餐點分類相關
  */
 @RestController
-@RequestMapping("/menu_category")
+@RequestMapping("/mealCate")
 public class MenuCategoryController implements IRestBase {
 
 	@Autowired
 	private IMenuCategoryFacade menuCategoryFacade;
 	
 	/**
-	 * 查詢所有餐點種類(列表)
+	 * 查詢所有餐點類別
+	 */
+	@GetMapping("/cate")
+	public RestResult queryMenuCategory() {
+		List<MenuCategoryDto> cateList = menuCategoryFacade.queryMenuCategory();
+		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), cateList);
+	}
+	
+	/**
+	 * 查詢所有餐點子類別
+	 */
+	@GetMapping("/sub")
+	public RestResult queryMenuSubCategory() {
+		Map<Integer, List<String>> subCateMap = menuCategoryFacade.querySubCategory();
+		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), subCateMap);
+	}
+	
+	/**
+	 * 查詢分類管理(特定分類)
+	 */
+	@GetMapping("/{categoryId}")
+	public RestResult queryCateInfo(@PathVariable int categoryId) {
+		List<MenuCategoryInfoDto> cateInfoList = menuCategoryFacade.queryCateInfo(categoryId);
+		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), cateInfoList);
+	}
+	
+	/**
+	 * 查詢分類管理(所有)
 	 */
 	@GetMapping
-	public RestResult queryMenuCategoryList() {
-		List<MenuCategoryListDto> resultList = menuCategoryFacade.queryMenuCategoryList();
-		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
+	public RestResult queryCateInfo() {
+		int categoryId = -1;
+		List<MenuCategoryInfoDto> cateInfoList = menuCategoryFacade.queryCateInfo(categoryId);
+		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), cateInfoList);
 	}
 	
 	/**
-	 * 查詢所有餐點種類(顯示標題用)
+	 * 儲存設定分類修改(包含新增及修改)
 	 */
-	@GetMapping("/icon")
-	public RestResult queryMenuCategoryIconList() {
-		List<MenuCategoryDetailDto> resultList = menuCategoryFacade.queryMenuCategoryIconList();
-		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
+	@PostMapping("/save")
+	public RestResult updateCateInfo(@RequestBody MenuCategoryInfoVo categoryInfoVo) {
+		menuCategoryFacade.updateCateInfo(categoryInfoVo);
+		return buildResult(AppCode.SERVER.SUCCESS.UPDATE_SUCCESS.getCode(), null);
 	}
 	
 	/**
-	 * 新增餐點種類
+	 * 刪除分類
 	 */
-	@PostMapping
-	public RestResult addMenuCategory(@RequestBody MenuCategoryVo menuCategoryVo) {
-		menuCategoryFacade.addMenuCategory(menuCategoryVo);
-		return buildResult(AppCode.SERVER.SUCCESS.INSERT_SUCCESS.getCode(), null);
+	@DeleteMapping("/{categoryId}")
+	public RestResult deleteCategory(@PathVariable int categoryId) {
+		menuCategoryFacade.deleteCategory(categoryId);
+		return buildResult(AppCode.SERVER.SUCCESS.DELETE_SUCCESS.getCode(), null);
 	}
 	
-	/**
-	 * 查詢特定餐點種類
-	 */
-	@GetMapping("/{id}")
-	public RestResult querySpecMenuCategory(@PathVariable String id) {
-		MenuCategoryDetailDto menuCategoryDetailDto = menuCategoryFacade.querySpecMenuCategory(id);
-		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), menuCategoryDetailDto);
-	}
 	
 	/**
-	 * 刪除特定餐點種類
+	 * 刪除子分類
 	 */
-	@DeleteMapping("/{id}")
-	public RestResult deleteSpecMenuCategory(@PathVariable String id) {
-		menuCategoryFacade.deleteSpecMenuCategory(id);
+	@DeleteMapping("/sub/{subCategoryId}")
+	public RestResult deleteSubCategory(@PathVariable int subCategoryId) {
+		menuCategoryFacade.deleteSubCategory(subCategoryId);
 		return buildResult(AppCode.SERVER.SUCCESS.DELETE_SUCCESS.getCode(), null);
 	}
 	
 	/**
-	 * 更新餐點種類
+	 * 更新分類順序
 	 */
-	@PutMapping("/{id}")
-	public RestResult updateMenuCategory(@PathVariable String id, @RequestBody MenuCategoryVo menuCategoryVo) {
-		menuCategoryFacade.updateMenuCategory(id, menuCategoryVo);
+	@PutMapping
+	public RestResult updateCategorySort(@RequestBody List<SortVo> sortList) {
+		menuCategoryFacade.updateCategorySort(sortList);
 		return buildResult(AppCode.SERVER.SUCCESS.UPDATE_SUCCESS.getCode(), null);
 	}
 }

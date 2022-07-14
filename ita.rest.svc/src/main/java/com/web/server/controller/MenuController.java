@@ -20,7 +20,7 @@ import com.web.server.rest.RestResult;
 import com.web.server.vo.MenuVo;
 
 /**
- * 訊息專區
+ * 餐點
  */
 @RestController
 @RequestMapping("/menu")
@@ -39,6 +39,15 @@ public class MenuController implements IRestBase {
 	}
 	
 	/**
+	 * 查詢特定種類的餐點 for 前台
+	 */
+	@PostMapping("/{categoryId}")
+	public RestResult queryMenuSpecCateList(@PathVariable int categoryId) {
+		List<MenuListDto> menuSpecCateMap = menuFacade.queryMenuSpecCate(categoryId);
+		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), menuSpecCateMap);
+	}
+	
+	/**
 	 * 新增餐點
 	 */
 	@PostMapping
@@ -46,15 +55,6 @@ public class MenuController implements IRestBase {
 		menuFacade.addMenu(menuVo);
 		return buildResult(AppCode.SERVER.SUCCESS.INSERT_SUCCESS.getCode(), null);
 	}
-	
-	/**
-	 * 查詢特定一筆餐點
-	 */
-//	@GetMapping("/{id}")
-//	public RestResult querySpecMenu(@PathVariable String id) {
-//		MenuListDto menuListDto = menuFacade.querySpecMenu(id);
-//		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), menuListDto);
-//	}
 	
 	/**
 	 * 刪除特定餐點
@@ -77,9 +77,9 @@ public class MenuController implements IRestBase {
 	/**
 	 * 查詢特定種類的餐點
 	 */
-	@GetMapping("/{category}")
-	public RestResult queryCategoryMenu(@PathVariable String category) {
-		List<MenuListDto> resultList = menuFacade.queryCategoryMenu(category);
-		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
-	}
+//	@GetMapping("/{category}")
+//	public RestResult queryCategoryMenu(@PathVariable String category) {
+//		List<MenuListDto> resultList = menuFacade.queryCategoryMenu(category);
+//		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
+//	}
 }

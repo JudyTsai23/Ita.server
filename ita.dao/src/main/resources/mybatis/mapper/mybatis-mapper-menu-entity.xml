@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.mapper.entity">
-
-	<!-- 訊息Entity -->
-	<resultMap id="newsEntity" type="com.web.server.entity.NewsEntity">
-		<result column="ID" property="id" />
-		<result column="TYPE" property="type" typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
-		<result column="TITLE" property="title" />
-		<result column="DESCRIPTION" property="description" />
-		<result column="CONTENT" property="content" />
-		<result column="IMAGE" property="image" />
-		<result column="PUBLISH_TIME" property="publishTime" />
-		<result column="IS_PUBLIC" property="isPublic" />
-		<result column="IS_TOP" property="isTop" />
-		<result column="UPD_USER" property="updUser" />
-		<result column="UPD_TIME" property="updTime" />
-	</resultMap>
+<mapper namespace="mybatis.mapper.menu.entity">
 
 	<!-- 餐點Entity -->
 	<resultMap id="menuEntity" type="com.web.server.entity.MenuEntity">
@@ -34,6 +19,19 @@
 		<result column="IS_PUBLIC" property="isPublic" />
 		<result column="UPD_TIME" property="updTime" />
 	</resultMap>
+	
+	<!-- 特定種類餐點Entity -->
+	<resultMap id="menuSpecCateEntity" type="com.web.server.entity.MenuSpecCateEntity">
+		<result column="ID" property="subCateId" />
+		<result column="NAME" property="subCateName" />
+		<result column="MEAL_NAME" property="mealName" />
+		<result column="DESCRIPTION" property="description" />
+		<result column="INGREDIENT" property="ingredient" />
+		<result column="NOTE" property="note" />
+		<result column="PRICE" property="price" />
+		<result column="IMAGE" property="image" />
+		<result column="LIMIT_DATE" property="limitDate" />
+	</resultMap>
 
 	<!-- 餐點種類Entity -->
 	<resultMap id="menuCategoryEntity" type="com.web.server.entity.MenuCategoryEntity">
@@ -44,7 +42,7 @@
 		<result column="SORT" property="sort" />
 	</resultMap>
 
-	<!-- 餐點次分類Entity -->
+	<!-- 餐點子分類Entity -->
 	<resultMap id="menuSubCategoryEntity" type="com.web.server.entity.MenuSubCategoryEntity">
 		<result column="ID" property="id" />
 		<result column="NAME" property="name" />
@@ -52,4 +50,15 @@
 		<result column="SORT" property="sort" />
 	</resultMap>
 	
+	<!-- 分類管理Entity -->
+	<resultMap id="menuCategoryInfoEntity" type="com.web.server.entity.MenuCategoryInfoEntity">
+		<result column="ID" property="categoryId" />
+		<result column="NAME" property="categoryName" />
+		<result column="ZH_NAME" property="cateZhName" />
+		<result column="ICON" property="categoryIcon" />
+		<result column="SORT" property="categorySort" />
+		<result column="SUB_CATE_ID" property="subCateId" />
+		<result column="SUB_CATE_NAME" property="subCateName" />
+		<result column="SUB_CATE_SORT" property="subCateSort" />
+	</resultMap>
 </mapper>

@@ -1,40 +1,47 @@
 package com.web.server.facade;
 
 import java.util.List;
+import java.util.Map;
 
-import com.web.server.dto.MenuCategoryListDto;
-import com.web.server.dto.MenuCategoryDetailDto;
-import com.web.server.vo.MenuCategoryVo;
+import com.web.server.dto.MenuCategoryDto;
+import com.web.server.dto.MenuCategoryInfoDto;
+import com.web.server.vo.MenuCategoryInfoVo;
+import com.web.server.vo.SortVo;
 
 public interface IMenuCategoryFacade {
 
 	/**
-	 * 查詢所有餐點種類(列表)
+	 * 查詢所有餐點類別
 	 */
-	List<MenuCategoryListDto> queryMenuCategoryList();
+	List<MenuCategoryDto> queryMenuCategory();
 
 	/**
-	 * 查詢所有餐點種類(顯示標題用)
+	 * 查詢所有餐點子類別
 	 */
-	List<MenuCategoryDetailDto> queryMenuCategoryIconList();
-
-	/**
-	 * 新增餐點種類
-	 */
-	void addMenuCategory(MenuCategoryVo menuCategoryVo);
+	Map<Integer, List<String>> querySubCategory();
 	
 	/**
-	 * 查詢特定餐點種類
+	 * 查詢分類管理
 	 */
-	MenuCategoryDetailDto querySpecMenuCategory(String id);
+	List<MenuCategoryInfoDto> queryCateInfo(int categoryId);
 	
 	/**
-	 * 刪除特定餐點種類
+	 * 儲存設定分類修改(包含新增及修改)
 	 */
-	void deleteSpecMenuCategory(String id);
+	void updateCateInfo(MenuCategoryInfoVo categoryInfoVo);
 	
 	/**
-	 * 更新餐點種類
+	 * 刪除分類
 	 */
-	void updateMenuCategory(String id, MenuCategoryVo menuCategoryVo);
+	void deleteCategory(int categoryId);
+	
+	/**
+	 * 刪除子分類
+	 */
+	void deleteSubCategory(int subCategoryId);
+	
+	/**
+	 * 更新分類順序
+	 */
+	void updateCategorySort(List<SortVo> sortList);
 }
