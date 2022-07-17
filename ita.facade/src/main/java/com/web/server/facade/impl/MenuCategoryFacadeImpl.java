@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.web.server.bo.MenuCategoryBo;
 import com.web.server.bo.MenuCategoryInfoBo;
 import com.web.server.bo.MenuSubCategoryBo;
+import com.web.server.cnst.AppCode;
 import com.web.server.dto.MenuCategoryDto;
 import com.web.server.dto.MenuCategoryInfoDto;
 import com.web.server.dto.MenuSubCategoryInfoDto;
@@ -122,7 +123,13 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 			for(MenuSubCategoryInfoVo item : categoryInfoVo.getSubCateList()) {
 				MenuSubCategoryBo updSubCateBo = new MenuSubCategoryBo();
 				updSubCateBo.setName(item.getName());
-				updSubCateBo.setSort(item.getSort());
+
+				int sort = item.getSort();
+				if(sort == 0) {
+					throw new RuntimeException(AppCode.VALID.VAL.FIELD_REQUIRED.getCode() + "-子分類的順序不得為空");
+				}else {
+					updSubCateBo.setSort(item.getSort());
+				}
 				
 				int id = item.getId();
 				if(id == 0) {
@@ -155,7 +162,13 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 				updSubCateBo.setId(item.getId());
 				updSubCateBo.setName(item.getName());
 				updSubCateBo.setCategoryId(lastestCategoryId);
-				updSubCateBo.setSort(item.getSort());
+				
+				int sort = item.getSort();
+				if(sort == 0) {
+					throw new RuntimeException(AppCode.VALID.VAL.FIELD_REQUIRED.getCode() + "-子分類的順序不得為空");
+				}else {
+					updSubCateBo.setSort(sort);
+				}
 				
 				lastestSubCateId++;
 				insertSubCateBoList.add(updSubCateBo);

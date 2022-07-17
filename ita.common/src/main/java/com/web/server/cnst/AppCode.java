@@ -53,19 +53,19 @@ public class AppCode {
 			 */
 			DATA_ERROR("ERROR_002"),
 			/**
-			 * 資料錯誤
+			 * 新增錯誤
 			 */
 			INSERT_ERROR("ERROR_003"),
 			/**
-			 * 資料錯誤
+			 * 查詢錯誤
 			 */
 			QUERY_ERROR("ERROR_004"),
 			/**
-			 * 資料錯誤
+			 * 刪除錯誤
 			 */
 			DELETE_ERROR("ERROR_005"),
 			/**
-			 * 資料錯誤
+			 * 更新錯誤
 			 */
 			UPDATE_ERROR("ERROR_006"),
 			;
