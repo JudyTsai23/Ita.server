@@ -48,8 +48,11 @@ public class NewsServiceImpl implements INewsService {
 	@Override
 	public NewsDetailBo querySpecNews(String id) {
 		NewsEntity newsEntity = newsDao.querySpecNews(id);
-		NewsDetailBo newsDetailBo = new NewsDetailBo();
-		BeanUtils.copyProperties(newsEntity, newsDetailBo);
+		NewsDetailBo newsDetailBo = null;
+		if(newsEntity != null) {
+			newsDetailBo = new NewsDetailBo();
+			BeanUtils.copyProperties(newsEntity, newsDetailBo);
+		}
 		return newsDetailBo;
 	}
 

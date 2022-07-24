@@ -63,9 +63,12 @@ public class NewsFacadeImpl implements INewsFacade {
 	@Override 
 	public NewsDetailDto querySpecNews(String id) {
 		NewsDetailBo newsDetailBo = newsService.querySpecNews(id);
-		NewsDetailDto newsDetailDto = new NewsDetailDto();
-		newsDetailDto.setType(newsDetailBo.getType().getTypeName());
-		BeanUtils.copyProperties(newsDetailBo, newsDetailDto);
+		NewsDetailDto newsDetailDto = null;
+		if(newsDetailBo != null) {
+			newsDetailDto = new NewsDetailDto();
+			newsDetailDto.setType(newsDetailBo.getType().getTypeName());
+			BeanUtils.copyProperties(newsDetailBo, newsDetailDto);
+		}
 		return newsDetailDto;
 	}
 	
