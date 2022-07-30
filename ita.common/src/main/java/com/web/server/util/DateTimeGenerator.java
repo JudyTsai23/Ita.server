@@ -31,7 +31,7 @@ public class DateTimeGenerator {
 			.withZone(ZoneId.of("Asia/Taipei"));
 
 	// YYYY/MM/dd-HH:mm:ss.SSS
-	private static DateTimeFormatter yyyy_MM_dd_HH_mm_ss = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss")
+	private static DateTimeFormatter yyyy_MM_dd_HH_mm_ss = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss")
 			.withZone(ZoneId.of("Asia/Taipei"));
 
 	/**
@@ -75,16 +75,16 @@ public class DateTimeGenerator {
 	 * @return YYYYMMdd HHmmss
 	 */
 	public static String getCurrentDate_YYYYMMdd_HHmmss() {
-		String formatDate = yyyyMMddHHmmss.format(LocalDate.now());
+		String formatDate = yyyyMMddHHmmss.format(LocalDateTime.now());
 		return formatDate;
 	}
 	
 	/**
 	 * 取得當前日期時間
-	 * @return YYYY/MM/dd HH:mm:ss
+	 * @return YYYY-MM-dd HH:mm:ss
 	 */
 	public static String getCurrentDate_YYYY_MM_dd_HH_mm_ss() {
-		String formatDate = yyyy_MM_dd_HH_mm_ss.format(LocalDate.now());
+		String formatDate = yyyy_MM_dd_HH_mm_ss.format(LocalDateTime.now());
 		return formatDate;
 	}
 
