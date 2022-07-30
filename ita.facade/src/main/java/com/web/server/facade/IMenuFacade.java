@@ -3,14 +3,31 @@ package com.web.server.facade;
 import java.util.List;
 
 import com.web.server.dto.MenuListDto;
-import com.web.server.vo.MenuVo;
+import com.web.server.dto.MenuSingleMealDto;
+import com.web.server.vo.MenuSingleMealVo;
+import com.web.server.vo.SortStrVo;
 
 public interface IMenuFacade {
 
 	/**
 	 * 查詢所有餐點列表
 	 */
-	List<MenuListDto> queryMenuList();
+	List<MenuListDto> queryMeals(int categoryId);
+	
+	/**
+	 * 查詢單一餐點
+	 */
+	MenuSingleMealDto querySingleMeal(String mealId);
+	
+	/**
+	 * 儲存餐點修改(包含新增及修改)
+	 */
+	void updateMealInfo(MenuSingleMealVo mealVo);
+	
+	/**
+	 * 刪除單一餐點
+	 */
+	void deleteSingleMeal(String mealId);
 	
 	/**
 	 * 查詢特定種類的餐點列表
@@ -18,18 +35,8 @@ public interface IMenuFacade {
 	List<MenuListDto> queryMenuSpecCate(int category);
 
 	/**
-	 * 新增餐點
+	 * 更新餐點順序
 	 */
-	void addMenu(MenuVo menuVo);
-	
-	/**
-	 * 刪除特定餐點
-	 */
-	void deleteSpecMenu(String id);
-	
-	/**
-	 * 更新餐點
-	 */
-	void updateMenu(String id, MenuVo menuVo);
+	void updateMealsSort(List<SortStrVo> sortList);
 	
 }

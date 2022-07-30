@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.web.server.cnst.AppCode;
 import com.web.server.dto.MenuListDto;
+import com.web.server.dto.MenuSingleMealDto;
 import com.web.server.facade.IMenuFacade;
 import com.web.server.rest.IRestBase;
 import com.web.server.rest.RestResult;
-import com.web.server.vo.MenuVo;
+import com.web.server.vo.MenuSingleMealVo;
+import com.web.server.vo.SortStrVo;
 
 /**
- * 餐點
+ * 菜單餐點相關
  */
 @RestController
 @RequestMapping("/menu")
@@ -30,56 +32,60 @@ public class MenuController implements IRestBase {
 	private IMenuFacade menuFacade;
 	
 	/**
-	 * 查詢所有餐點列表
+	 * 查詢所有餐點 (後台-餐點管理)
 	 */
-	@GetMapping
-	public RestResult queryMenuList() {
-		List<MenuListDto> resultList = menuFacade.queryMenuList();
+	@GetMapping("/meals/{categoryId}")
+	public RestResult queryMeals(@PathVariable int categoryId) {
+		List<MenuListDto> resultList = menuFacade.queryMeals(categoryId);
 		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
+	}
+	
+	/**
+	 * 查詢單一餐點 (後台-餐點修改)
+	 */
+	@GetMapping("/meal/{mealId}")
+	public RestResult querySingleMeal(@PathVariable String mealId) {
+		MenuSingleMealDto singleMeal = menuFacade.querySingleMeal(mealId);
+		if(singleMeal == null) {
+			return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), null);
+		}
+		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), singleMeal);
+	}
+	
+	/**
+	 * 儲存餐點修改(包含新增及修改)
+	 */
+	@PostMapping("/save")
+	public RestResult updateMealInfo(@RequestBody MenuSingleMealVo mealVo) {
+		menuFacade.updateMealInfo(mealVo);
+		return buildResult(AppCode.SERVER.SUCCESS.UPDATE_SUCCESS.getCode(), null);
+	}
+	
+	/**
+	 * 刪除單一餐點
+	 */
+	@DeleteMapping("/{mealId}")
+	public RestResult deleteSingleMeal(@PathVariable String mealId) {
+		menuFacade.deleteSingleMeal(mealId);
+		return buildResult(AppCode.SERVER.SUCCESS.DELETE_SUCCESS.getCode(), null);
+	}
+	
+	/**
+	 * 更新餐點順序
+	 */
+	@PutMapping
+	public RestResult updateMealsSort(@RequestBody List<SortStrVo> sortList) {
+		menuFacade.updateMealsSort(sortList);
+		return buildResult(AppCode.SERVER.SUCCESS.UPDATE_SUCCESS.getCode(), null);
 	}
 	
 	/**
 	 * 查詢特定種類的餐點 for 前台
 	 */
-	@PostMapping("/{categoryId}")
-	public RestResult queryMenuSpecCateList(@PathVariable int categoryId) {
+	@GetMapping("/{categoryId}")
+	public RestResult queryMenu(@PathVariable int categoryId) {
 		List<MenuListDto> menuSpecCateMap = menuFacade.queryMenuSpecCate(categoryId);
 		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), menuSpecCateMap);
 	}
 	
-	/**
-	 * 新增餐點
-	 */
-	@PostMapping
-	public RestResult addMenu(@RequestBody MenuVo menuVo) {
-		menuFacade.addMenu(menuVo);
-		return buildResult(AppCode.SERVER.SUCCESS.INSERT_SUCCESS.getCode(), null);
-	}
-	
-	/**
-	 * 刪除特定餐點
-	 */
-	@DeleteMapping("/{id}")
-	public RestResult deleteSpecMenu(@PathVariable String id) {
-		menuFacade.deleteSpecMenu(id);
-		return buildResult(AppCode.SERVER.SUCCESS.DELETE_SUCCESS.getCode(), null);
-	}
-	
-	/**
-	 * 更新餐點
-	 */
-	@PutMapping("/{id}")
-	public RestResult updateMenu(@PathVariable String id, @RequestBody MenuVo menuVo) {
-		menuFacade.updateMenu(id, menuVo);
-		return buildResult(AppCode.SERVER.SUCCESS.UPDATE_SUCCESS.getCode(), null);
-	}
-	
-	/**
-	 * 查詢特定種類的餐點
-	 */
-//	@GetMapping("/{category}")
-//	public RestResult queryCategoryMenu(@PathVariable String category) {
-//		List<MenuListDto> resultList = menuFacade.queryCategoryMenu(category);
-//		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
-//	}
 }

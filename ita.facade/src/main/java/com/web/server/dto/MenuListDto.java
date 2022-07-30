@@ -2,15 +2,18 @@ package com.web.server.dto;
 
 import java.util.List;
 
-// for 前台 查詢消費者所看的餐點資訊
 public class MenuListDto {
 
-	private String subCateName; // 餐點子類別
-	private List<MenuListDetailDto> mealList; // 餐點清單
-	
-	public MenuListDto(String name, List<MenuListDetailDto> list) {
-		this.subCateName = name;
-		this.mealList = list;
+	private int subCateId; // 餐點子分類ID
+	private String subCateName; // 餐點子類別名稱
+	private List<MenuListDetailDto> meals; // 餐點清單
+
+	public int getSubCateId() {
+		return subCateId;
+	}
+
+	public void setSubCateId(int subCateId) {
+		this.subCateId = subCateId;
 	}
 
 	public String getSubCateName() {
@@ -21,11 +24,12 @@ public class MenuListDto {
 		this.subCateName = subCateName;
 	}
 
-	public List<MenuListDetailDto> getMealList() {
-		return mealList;
+	public List<MenuListDetailDto> getMeals() {
+		return meals;
 	}
 
-	public void setMealList(List<MenuListDetailDto> mealList) {
-		this.mealList = mealList;
+	public void setMeals(List<MenuListDetailDto> meals) {
+		this.meals = meals;
 	}
+
 }

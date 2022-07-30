@@ -1,28 +1,22 @@
 package com.web.server.entity;
 
-import java.time.LocalDateTime;
+public class MealEntity {
 
-import com.web.server.enumcnst.MenuCategoryEnum;
-import com.web.server.enumcnst.MenuSubCategoryEnum;
-
-public class MenuEntity {
-
-	private String id;						// 餐點流水號
-	private MenuCategoryEnum category;			// 餐點種類
-	private MenuSubCategoryEnum subCategory; 	// 餐點次分類
-	private String name;					// 餐點名稱
-	private String description;				// 餐點描述
-	private String ingredient;				// 內容物
-	private String note;					// 餐點提醒
-	private int price;						// 價格
-	private String image;					// 餐點圖片
-	private LocalDateTime addedTime;		// 創建時間
-	private int limitDate;					// 期間限定的下架日期
-	private int sort;						// 餐點排序
-	private String isPublic;				// 是否公開
-	private LocalDateTime updTime;			// 異動時間
-	
-
+	private String id; // 餐點流水號
+	private int category; // 餐點種類
+	private int subCategory; // 餐點次分類
+	private String subCategoryName; // 餐點次分類名稱
+	private String name; // 餐點名稱
+	private String description; // 餐點描述
+	private String ingredient; // 內容物
+	private String note; // 餐點提醒
+	private int price; // 價格
+	private String image; // 餐點圖片
+	private int limitDate; // 期間限定的下架日期
+	private int sort; // 餐點排序
+	private String isPublic; // 是否公開
+	private String addedTime; // 創建時間
+	private String updTime; // 異動時間
 
 	public String getId() {
 		return id;
@@ -32,20 +26,28 @@ public class MenuEntity {
 		this.id = id;
 	}
 
-	public MenuCategoryEnum getCategory() {
+	public int getCategory() {
 		return category;
 	}
 
-	public void setCategory(MenuCategoryEnum category) {
+	public void setCategory(int category) {
 		this.category = category;
 	}
 
-	public MenuSubCategoryEnum getSubCategory() {
+	public int getSubCategory() {
 		return subCategory;
 	}
 
-	public void setSubCategory(MenuSubCategoryEnum subCategory) {
+	public void setSubCategory(int subCategory) {
 		this.subCategory = subCategory;
+	}
+
+	public String getSubCategoryName() {
+		return subCategoryName;
+	}
+
+	public void setSubCategoryName(String subCategoryName) {
+		this.subCategoryName = subCategoryName;
 	}
 
 	public String getName() {
@@ -87,21 +89,13 @@ public class MenuEntity {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+
 	public String getImage() {
 		return image;
 	}
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public LocalDateTime getAddedTime() {
-		return addedTime;
-	}
-
-	public void setAddedTime(LocalDateTime addedTime) {
-		this.addedTime = addedTime;
 	}
 
 	public int getLimitDate() {
@@ -128,11 +122,20 @@ public class MenuEntity {
 		this.isPublic = isPublic;
 	}
 
-	public LocalDateTime getUpdTime() {
+	public String getAddedTime() {
+		return addedTime;
+	}
+
+	public void setAddedTime(String addedTime) {
+		this.addedTime = addedTime;
+	}
+
+	public String getUpdTime() {
 		return updTime;
 	}
 
-	public void setUpdTime(LocalDateTime updTime) {
+	public void setUpdTime(String updTime) {
 		this.updTime = updTime;
 	}
+
 }

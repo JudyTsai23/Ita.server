@@ -3,20 +3,21 @@
 <mapper namespace="mybatis.mapper.menu.entity">
 
 	<!-- 餐點Entity -->
-	<resultMap id="menuEntity" type="com.web.server.entity.MenuEntity">
+	<resultMap id="mealEntity" type="com.web.server.entity.MealEntity">
 		<result column="ID" property="id" />
-		<result column="CATEGORY" property="category" typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
-		<result column="SUB_CATEGORY" property="subCategory"  typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
+		<result column="CATEGORY" property="category" />
+		<result column="SUB_CATEGORY_NAME" property="subCategoryName" />
+		<result column="SUB_CATEGORY" property="subCategory" />
 		<result column="NAME" property="name" />
 		<result column="DESCRIPTION" property="description" />
 		<result column="INGREDIENT" property="ingredient" />
 		<result column="NOTE" property="note" />
 		<result column="PRICE" property="price" />
 		<result column="IMAGE" property="image" />
-		<result column="ADDED_TIME" property="addedTime" />
 		<result column="LIMIT_DATE" property="limitDate" />
 		<result column="SORT" property="sort" />
 		<result column="IS_PUBLIC" property="isPublic" />
+		<result column="ADDED_TIME" property="addedTime" />
 		<result column="UPD_TIME" property="updTime" />
 	</resultMap>
 	
@@ -33,7 +34,7 @@
 		<result column="LIMIT_DATE" property="limitDate" />
 	</resultMap>
 
-	<!-- 餐點種類Entity -->
+	<!-- 餐點分類Entity -->
 	<resultMap id="menuCategoryEntity" type="com.web.server.entity.MenuCategoryEntity">
 		<result column="ID" property="id" />
 		<result column="NAME" property="name" />

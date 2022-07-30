@@ -7,10 +7,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.web.server.bo.MenuListBo;
+import com.web.server.bo.MealBo;
 import com.web.server.dao.IMenuDao;
-import com.web.server.entity.MenuEntity;
+import com.web.server.entity.MealEntity;
 import com.web.server.entity.MenuSpecCateEntity;
+import com.web.server.entity.SortStrEntity;
 import com.web.server.service.IMenuService;
 import com.web.server.util.DateTimeGenerator;
 
@@ -24,15 +25,62 @@ public class MenuServiceImpl implements IMenuService {
 	 * 查詢所有餐點列表
 	 */
 	@Override
-	public List<MenuListBo> queryMenuList(int today) {
-		List<MenuEntity> menuEntityList = menuDao.queryMenu(today);
-		List<MenuListBo> menuBoList = new ArrayList<>();
+	public List<MealBo> queryMeals(int categoryId) {
+		List<MealEntity> menuEntityList = menuDao.queryMeals(categoryId);
+		List<MealBo> menuBoList = new ArrayList<>();
 		menuEntityList.forEach((menu) -> {
-			MenuListBo target = new MenuListBo();
+			MealBo target = new MealBo();
 			BeanUtils.copyProperties(menu, target);
 			menuBoList.add(target);
 		});
 		return menuBoList;
+	}
+	
+	/**
+	 * 查詢單一餐點
+	 */
+	@Override
+	public MealBo querySingleMeal(String mealId) {
+		MealEntity entity = menuDao.querySingleMeal(mealId);
+		if(entity != null) {
+			MealBo bo = new MealBo();
+			BeanUtils.copyProperties(entity, bo);
+			
+			return bo;
+		}
+		return null;
+	}
+	
+	/**
+	 * 儲存餐點修改(修改單一餐點)
+	 */
+	@Override
+	public void updateSingleMeal(MealEntity mealEntity) {
+		menuDao.updateSingleMeal(mealEntity);
+	}
+	
+	/**
+	 * 儲存餐點修改(新增一餐點)
+	 */
+	@Override
+	public void insertSingleMeal(MealEntity mealEntity) {
+		menuDao.insertSingleMeal(mealEntity);
+	}
+	
+	/**
+	 * 刪除單一餐點
+	 */
+	@Override
+	public void deleteSingleMeal(String mealId) {
+		menuDao.deleteSingleMeal(mealId);
+	}
+	
+	/**
+	 * 更新餐點順序
+	 */
+	@Override
+	public void updateMealsSort(List<SortStrEntity> mealList) {
+		menuDao.updateMealsSort(mealList);
 	}
 	
 	/**
@@ -42,21 +90,5 @@ public class MenuServiceImpl implements IMenuService {
 	public List<MenuSpecCateEntity> queryMenuSpecCate(int category) {
 		int today = Integer.parseInt(DateTimeGenerator.getCurrentDate_YYYYMMdd());
 		return menuDao.queryMenuSpecCate(category, today);
-	}
-
-	/**
-	 * 新增餐點
-	 */
-	@Override
-	public void addMenu(MenuEntity menuEntity) {
-		menuDao.insertMenu(menuEntity);
-	}
-
-	/**
-	 * 刪除特定餐點
-	 */
-	@Override
-	public void deleteSpecMenu(String id) {
-		menuDao.deleteSpecMenu(id);
 	}
 }
