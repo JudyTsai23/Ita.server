@@ -109,9 +109,7 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 		
 		// 組出分類
 		MenuCategoryBo updCateBo = new MenuCategoryBo();
-		updCateBo.setName(categoryInfoVo.getName());
-		updCateBo.setZhName(categoryInfoVo.getZhName());
-		updCateBo.setIcon(categoryInfoVo.getIcon());
+		BeanUtils.copyProperties(categoryInfoVo, updCateBo);
 		
 		if(categoryId > 0) {
 			// 若分類ID不為0，則為修改
@@ -123,6 +121,7 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 			for(MenuSubCategoryInfoVo item : categoryInfoVo.getSubCateList()) {
 				MenuSubCategoryBo updSubCateBo = new MenuSubCategoryBo();
 				updSubCateBo.setName(item.getName());
+				updSubCateBo.setCategoryId(categoryId);
 
 				int sort = item.getSort();
 				if(sort == 0) {
@@ -134,7 +133,6 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 				int id = item.getId();
 				if(id == 0) {
 					updSubCateBo.setId(lastestSubCateId);
-					updSubCateBo.setCategoryId(categoryId);
 					lastestSubCateId++;
 					insertSubCateBoList.add(updSubCateBo);
 				}else {
@@ -143,9 +141,13 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 				}
 			}
 			// update
- 			menuCategoryService.updateCateInfo(updCateBo, updateSubCateBoList);
- 			// insert
- 			menuCategoryService.insertSubCategoryInfo(insertSubCateBoList);
+			if(updateSubCateBoList.size() > 0) {
+				menuCategoryService.updateCateInfo(updCateBo, updateSubCateBoList);
+			}
+			// insert
+			if(insertSubCateBoList.size() > 0) {
+				menuCategoryService.insertSubCategoryInfo(insertSubCateBoList);
+			}
  			
 		}else {
 			// 若分類ID為0，則新增
@@ -175,7 +177,9 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 			}
 			// insert
 			menuCategoryService.insertCategoryInfo(updCateBo);
-			menuCategoryService.insertSubCategoryInfo(insertSubCateBoList);
+			if(insertSubCateBoList.size() > 0) {
+				menuCategoryService.insertSubCategoryInfo(insertSubCateBoList);
+			}
 		} 
 	}
 	

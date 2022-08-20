@@ -104,7 +104,6 @@ public class MenuFacadeImpl implements IMenuFacade {
 			entity.setId(NumberGenerator.getSerialNum());
 			entity.setAddedTime(DateTimeGenerator.getCurrentDate_YYYY_MM_dd_HH_mm_ss());
 			entity.setUpdTime(DateTimeGenerator.getCurrentDate_YYYY_MM_dd_HH_mm_ss());
-			System.out.println(DateTimeGenerator.getCurrentDate_YYYY_MM_dd_HH_mm_ss().length());
 			menuService.insertSingleMeal(entity);
 		}else {
 			// 若有id則為修改
