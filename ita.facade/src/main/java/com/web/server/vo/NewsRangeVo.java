@@ -1,6 +1,6 @@
 package com.web.server.vo;
 
-public class NewsSpecVo {
+public class NewsRangeVo {
 
 	private int count; // 欲查詢的筆數
 	private int page; // 頁數

@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.server.cnst.AppCode;
 import com.web.server.dto.NewsDetailDto;
-import com.web.server.dto.NewsListDto;
+import com.web.server.dto.NewsMngDetailDto;
+import com.web.server.dto.NewsMngListDto;
 import com.web.server.dto.NewsRangeDto;
 import com.web.server.facade.INewsFacade;
 import com.web.server.rest.IRestBase;
 import com.web.server.rest.RestResult;
-import com.web.server.vo.NewsSpecVo;
+import com.web.server.vo.NewsRangeVo;
 import com.web.server.vo.NewsVo;
 
 /**
@@ -33,57 +33,57 @@ public class NewsController implements IRestBase {
 	private INewsFacade newsFacade;
 	
 	/**
-	 * 查詢訊息列表
+	 * 訊息管理-查詢
 	 */
 	@GetMapping
 	public RestResult queryNewsList() {
-		List<NewsListDto> resultList = newsFacade.queryNewsList();
+		List<NewsMngListDto> resultList = newsFacade.queryNewsList();
 		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
 	}
 	
 	/**
-	 * 新增訊息
+	 * 訊息管理-查詢單一訊息詳細資訊
 	 */
-	@PostMapping
-	public RestResult addNews(@RequestBody NewsVo newsVo) {
-		newsFacade.addNews(newsVo);
-		return buildResult(AppCode.SERVER.SUCCESS.INSERT_SUCCESS.getCode(), null);
+	@GetMapping("/mng/{id}")
+	public RestResult querySingleNewsDetail(@PathVariable String id) {
+		NewsMngDetailDto result = newsFacade.querySingleNewsDetail(id);
+		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), result);
 	}
 	
 	/**
-	 * 查詢特定一筆訊息
-	 */
-	@GetMapping("/{id}")
-	public RestResult querySpecNews(@PathVariable String id) {
-		NewsDetailDto newsDetailDto = newsFacade.querySpecNews(id);
-		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), newsDetailDto);
-	}
-	
-	/**
-	 * 刪除特定訊息
+	 * 訊息管理-刪除
 	 */
 	@DeleteMapping("/{id}")
-	public RestResult deleteSpecNews(@PathVariable String id) {
-		newsFacade.deleteSpecNews(id);
+	public RestResult deleteSingleNews(@PathVariable String id) {
+		newsFacade.deleteSingleNews(id);
 		return buildResult(AppCode.SERVER.SUCCESS.DELETE_SUCCESS.getCode(), null);
 	}
 	
 	/**
-	 * 更新訊息
+	 * 訊息修改-儲存(包含新增及修改)
 	 */
-	@PutMapping("/{id}")
-	public RestResult updateNews(@PathVariable String id, @RequestBody NewsVo newsVo) {
-		newsFacade.updateNews(id, newsVo);
+	@PostMapping("/save")
+	public RestResult updateSingleNews(@RequestBody NewsVo newsVo) {
+		newsFacade.updateSingleNews(newsVo);
 		return buildResult(AppCode.SERVER.SUCCESS.UPDATE_SUCCESS.getCode(), null);
 	}
 	
 	
 	/**
-	 * 查詢特定範圍內的訊息
+	 * 訊息專區-查詢
 	 */
 	@PostMapping("/range")
-	public RestResult querySpecRangeNews(@RequestBody NewsSpecVo newsSpecVo) {
+	public RestResult querySpecRangeNews(@RequestBody NewsRangeVo newsSpecVo) {
 		NewsRangeDto resultList = newsFacade.querySpecRangeNews(newsSpecVo);
 		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), resultList);
+	}
+
+	/**
+	 * 訊息專區-查詢特定一筆訊息
+	 */
+	@GetMapping("/{id}")
+	public RestResult querySingleNews(@PathVariable String id) {
+		NewsDetailDto newsDetailDto = newsFacade.querySingleNews(id);
+		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), newsDetailDto);
 	}
 }

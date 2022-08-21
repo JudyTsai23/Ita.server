@@ -28,4 +28,13 @@ public enum NewsType {
 	public void setTypeCd(int typeCd) {
 		this.typeCd = typeCd;
 	}
+	
+	public static NewsType getTypeByCd(int cd) {
+		for(NewsType type : NewsType.values()) {
+			if(type.getTypeCd() == cd) {
+				return type;
+			}
+		}
+		return null;
+	}
 }

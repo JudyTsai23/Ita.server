@@ -1,15 +1,16 @@
 package com.web.server.dto;
 
-public class NewsListDto {
+public class NewsMngDetailDto {
 
-	private String id; // 訊息流水號
-	private String type; // 訊息種類
-	private String title; // 訊息標題
-	private String description; // 訊息描述
-	private String image; // 圖片
-	private int publishDate; // 發布時間
-	private String isPublic; // 是否公開
-	private String isTop; // 是否為置頂訊息
+	private String id;
+	private int type;
+	private String title;
+	private String description;
+	private String content;
+	private String image;
+	private int publishDate;
+	private boolean isPublic;
+	private boolean isTop;
 
 	public String getId() {
 		return id;
@@ -19,11 +20,11 @@ public class NewsListDto {
 		this.id = id;
 	}
 
-	public String getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 
@@ -43,6 +44,14 @@ public class NewsListDto {
 		this.description = description;
 	}
 
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	public String getImage() {
 		return image;
 	}
@@ -59,19 +68,20 @@ public class NewsListDto {
 		this.publishDate = publishDate;
 	}
 
-	public String getIsPublic() {
+	public boolean isPublic() {
 		return isPublic;
 	}
 
-	public void setIsPublic(String isPublic) {
+	public void setPublic(boolean isPublic) {
 		this.isPublic = isPublic;
 	}
 
-	public String getIsTop() {
+	public boolean isTop() {
 		return isTop;
 	}
 
-	public void setIsTop(String isTop) {
+	public void setTop(boolean isTop) {
 		this.isTop = isTop;
 	}
+
 }

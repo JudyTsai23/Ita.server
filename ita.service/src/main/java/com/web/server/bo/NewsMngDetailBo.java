@@ -1,15 +1,18 @@
-package com.web.server.dto;
+package com.web.server.bo;
 
-public class NewsListDto {
+import com.web.server.enumcnst.NewsType;
 
-	private String id; // 訊息流水號
-	private String type; // 訊息種類
-	private String title; // 訊息標題
-	private String description; // 訊息描述
-	private String image; // 圖片
-	private int publishDate; // 發布時間
-	private String isPublic; // 是否公開
-	private String isTop; // 是否為置頂訊息
+public class NewsMngDetailBo {
+
+	private String id;
+	private NewsType type;
+	private String title;
+	private String description;
+	private String content;
+	private String image;
+	private int publishDate;
+	private String isPublic;
+	private String isTop;
 
 	public String getId() {
 		return id;
@@ -19,11 +22,11 @@ public class NewsListDto {
 		this.id = id;
 	}
 
-	public String getType() {
+	public NewsType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(NewsType type) {
 		this.type = type;
 	}
 
@@ -41,6 +44,14 @@ public class NewsListDto {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getImage() {
@@ -74,4 +85,5 @@ public class NewsListDto {
 	public void setIsTop(String isTop) {
 		this.isTop = isTop;
 	}
+
 }

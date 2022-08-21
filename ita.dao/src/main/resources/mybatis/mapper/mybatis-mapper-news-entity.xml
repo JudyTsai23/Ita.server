@@ -10,7 +10,7 @@
 		<result column="DESCRIPTION" property="description" />
 		<result column="CONTENT" property="content" />
 		<result column="IMAGE" property="image" />
-		<result column="PUBLISH_TIME" property="publishTime" />
+		<result column="PUBLISH_DATE" property="publishDate" />
 		<result column="IS_PUBLIC" property="isPublic" />
 		<result column="IS_TOP" property="isTop" />
 		<result column="UPD_USER" property="updUser" />

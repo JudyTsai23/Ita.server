@@ -9,7 +9,7 @@ public class NewsDetailBo {
 	private String title; // 訊息標題
 	private String content; // 訊息內文
 	private String image; // 圖片
-	private String publishTime; // 發布時間
+	private int publishDate; // 發布時間
 	private String isPublic; // 是否公開
 	private String isTop; // 是否為置頂訊息
 
@@ -53,12 +53,12 @@ public class NewsDetailBo {
 		this.image = image;
 	}
 
-	public String getPublishTime() {
-		return publishTime;
+	public int getPublishDate() {
+		return publishDate;
 	}
 
-	public void setPublishTime(String publishTime) {
-		this.publishTime = publishTime;
+	public void setPublishDate(int publishDate) {
+		this.publishDate = publishDate;
 	}
 
 	public String getIsPublic() {

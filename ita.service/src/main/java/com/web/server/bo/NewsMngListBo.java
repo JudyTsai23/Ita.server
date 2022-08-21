@@ -2,16 +2,14 @@ package com.web.server.bo;
 
 import com.web.server.enumcnst.NewsType;
 
-public class NewsListBo {
+public class NewsMngListBo {
 
-	private String id; // 訊息流水號
-	private NewsType type; // 訊息種類
-	private String title; // 訊息標題
-	private String description; // 訊息描述
-	private String image; // 圖片
-	private int publishDate; // 發布時間
-	private String isPublic; // 是否公開
-	private String isTop; // 是否為置頂訊息
+	private String id;
+	private NewsType type;
+	private String title;
+	private int publishDate;
+	private String isPublic;
+	private String isTop;
 
 	public String getId() {
 		return id;
@@ -35,22 +33,6 @@ public class NewsListBo {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
 	}
 
 	public int getPublishDate() {

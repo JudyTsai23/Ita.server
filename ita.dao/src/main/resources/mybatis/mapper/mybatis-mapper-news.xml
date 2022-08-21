@@ -2,9 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.server.dao.INewsDao">
 
-	<!-- 查詢所有訊息 -->
+	<!-- 訊息管理-查詢 -->
 	<select id="queryNews" resultMap="mybatis.mapper.news.entity.newsEntity">
-		SELECT * FROM NEWS ORDER BY PUBLISH_TIME
+		SELECT * FROM NEWS ORDER BY PUBLISH_DATE
+	</select>
+	
+	<!-- 訊息管理-查詢單一訊息詳細資訊 -->
+	<select id="querySingleNewsDetail" resultMap="mybatis.mapper.news.entity.newsEntity">
+		SELECT * FROM NEWS WHERE ID = #{newsId}
 	</select>
 	
 	<!-- 新增訊息 -->
@@ -16,7 +21,7 @@
 			DESCRIPTION,
 			CONTENT,
 			IMAGE,
-			PUBLISH_TIME,
+			PUBLISH_DATE,
 			IS_PUBLIC,
 			IS_TOP,
 			UPD_USER,
@@ -29,29 +34,45 @@
 			#{newsEntity.description},
 			#{newsEntity.content},
 			#{newsEntity.image},
-			#{newsEntity.publishTime},
+			#{newsEntity.publishDate},
 			#{newsEntity.isPublic},
 			#{newsEntity.isTop},
 			#{newsEntity.updUser},
 			#{newsEntity.updTime}
 		)
 	</insert>
+	
+	<!-- 修改訊息 -->
+	<update id="updateNews">
+		UPDATE NEWS
+		SET TYPE = #{news.type},
+			TITLE = #{news.title},
+			DESCRIPTION = #{news.description},
+			CONTENT = #{news.content},
+			IMAGE = #{news.image},
+			PUBLISH_DATE = #{news.publishDate},
+			IS_PUBLIC = #{news.isPublic},
+			IS_TOP = #{news.isTop},
+			UPD_USER = #{news.updUser},
+			UPD_TIME = #{news.updTime}
+		WHERE ID = #{news.id}
+	</update>
 
 	<!-- 查詢特定訊息 -->
-	<select id="querySpecNews" resultMap="mybatis.mapper.news.entity.newsEntity">
+	<select id="querySingleNews" resultMap="mybatis.mapper.news.entity.newsEntity">
 		SELECT * FROM NEWS
 		WHERE ID = #{newsId}
 	</select>
 	
 	<!-- 刪除特定訊息 -->
-	<delete id="deleteSpecNews">
+	<delete id="deleteSingleNews">
 		DELETE FROM NEWS WHERE ID = #{newsId}
 	</delete>
 	
 	<!-- 查詢特定範圍內的幾筆訊息 -->
 	<select id="querySpecRangeNews" resultMap="mybatis.mapper.news.entity.newsEntity">
 		<!-- 依據是否置頂及發佈時間排序，讓置頂訊息為第一筆資料 -->
-		SELECT * FROM NEWS ORDER BY IS_TOP DESC, PUBLISH_TIME DESC LIMIT #{count} OFFSET #{overCount}
+		SELECT * FROM NEWS ORDER BY IS_TOP DESC, PUBLISH_DATE DESC LIMIT #{count} OFFSET #{overCount}
 	</select>
 	
 	<!-- 查詢總筆數 -->

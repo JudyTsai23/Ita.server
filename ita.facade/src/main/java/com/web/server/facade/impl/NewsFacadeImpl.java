@@ -1,6 +1,5 @@
 package com.web.server.facade.impl;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +9,20 @@ import org.springframework.stereotype.Component;
 
 import com.web.server.bo.NewsDetailBo;
 import com.web.server.bo.NewsListBo;
+import com.web.server.bo.NewsMngDetailBo;
+import com.web.server.bo.NewsMngListBo;
 import com.web.server.dto.NewsDetailDto;
 import com.web.server.dto.NewsListDto;
+import com.web.server.dto.NewsMngDetailDto;
+import com.web.server.dto.NewsMngListDto;
 import com.web.server.dto.NewsRangeDto;
 import com.web.server.entity.NewsEntity;
+import com.web.server.enumcnst.NewsType;
 import com.web.server.facade.INewsFacade;
 import com.web.server.service.INewsService;
+import com.web.server.util.DateTimeGenerator;
 import com.web.server.util.NumberGenerator;
-import com.web.server.vo.NewsSpecVo;
+import com.web.server.vo.NewsRangeVo;
 import com.web.server.vo.NewsVo;
 
 @Component
@@ -25,84 +30,98 @@ public class NewsFacadeImpl implements INewsFacade {
 
 	@Autowired
 	private INewsService newsService;
-	
+
 	/**
-	 * 查詢訊息列表
+	 * 訊息管理-查詢
 	 */
 	@Override
-	public List<NewsListDto> queryNewsList() {
-		List<NewsListBo> newsBoList = newsService.queryNewsList();
-		List<NewsListDto> newsDtoList = new ArrayList<>();
+	public List<NewsMngListDto> queryNewsList() {
+		List<NewsMngListBo> newsBoList = newsService.queryNewsList();
+		List<NewsMngListDto> newsDtoList = new ArrayList<>();
 		newsBoList.forEach((news) -> {
-			NewsListDto target = new NewsListDto();
+			NewsMngListDto target = new NewsMngListDto();
 			target.setType(news.getType().getTypeName());
+			target.setTop("1".equals(news.getIsTop()) ? true : false);
+			target.setPublic("1".equals(news.getIsPublic()) ? true : false);
 			BeanUtils.copyProperties(news, target);
 			newsDtoList.add(target);
 		});
 		return newsDtoList;
 	}
-	
+
 	/**
-	 * 新增訊息
+	 * 訊息管理-查詢單一訊息詳細資訊
 	 */
 	@Override
-	public void addNews(NewsVo newsVo) {
-		String serialNum = NumberGenerator.getSerialNum();
-		
+	public NewsMngDetailDto querySingleNewsDetail(String id) {
+		NewsMngDetailBo bo = newsService.querySingleNewsDetail(id);
+		NewsMngDetailDto dto = new NewsMngDetailDto();
+		dto.setType(bo.getType().getTypeCd());
+		dto.setTop("1".equals(bo.getIsTop()) ? true : false);
+		dto.setPublic("1".equals(bo.getIsPublic()) ? true : false);
+		BeanUtils.copyProperties(bo, dto);
+		return dto;
+	}
+
+	/**
+	 * 訊息修改-儲存(包含新增及修改)
+	 */
+	@Override
+	public void updateSingleNews(NewsVo newsVo) {
+		String newsId = newsVo.getId();
 		NewsEntity newsEntity = new NewsEntity();
 		BeanUtils.copyProperties(newsVo, newsEntity);
-		newsEntity.setId(serialNum);
-		newsEntity.setUpdTime(LocalDateTime.now());
-		
-		newsService.addNews(newsEntity);
+		newsEntity.setType(NewsType.getTypeByCd(newsVo.getType()));
+		newsEntity.setIsPublic(newsVo.isPublic() ? "1" : "0");
+		newsEntity.setIsTop(newsVo.isTop() ? "1" : "0");
+		newsEntity.setUpdTime(DateTimeGenerator.getCurrentDate_YYYY_MM_dd_HH_mm_ss());
+
+		if (!"".equals(newsId)) {
+			// 若 ID 不為空，則為修改
+			newsService.updateNews(newsEntity);
+		} else {
+			// 若沒有 ID 則為新增
+			String serialNum = NumberGenerator.getSerialNum();
+			newsEntity.setId(serialNum);
+			newsEntity.setType(NewsType.getTypeByCd(newsVo.getType()));
+			newsEntity.setIsPublic(newsVo.isPublic() ? "1" : "0");
+			newsEntity.setIsTop(newsVo.isTop() ? "1" : "0");
+			newsService.addNews(newsEntity);
+		}
 	}
-	
+
 	/**
 	 * 查詢特定訊息
 	 */
-	@Override 
-	public NewsDetailDto querySpecNews(String id) {
-		NewsDetailBo newsDetailBo = newsService.querySpecNews(id);
+	@Override
+	public NewsDetailDto querySingleNews(String id) {
+		NewsDetailBo newsDetailBo = newsService.querySingleNews(id);
 		NewsDetailDto newsDetailDto = null;
-		if(newsDetailBo != null) {
+		if (newsDetailBo != null) {
 			newsDetailDto = new NewsDetailDto();
 			newsDetailDto.setType(newsDetailBo.getType().getTypeName());
 			BeanUtils.copyProperties(newsDetailBo, newsDetailDto);
 		}
 		return newsDetailDto;
 	}
-	
+
 	/**
 	 * 刪除特定訊息
 	 */
 	@Override
-	public void deleteSpecNews(String id) {
-		newsService.deleteSpecNews(id);
-	}
-	
-	/**
-	 * 更新訊息
-	 */
-	@Override
-	public void updateNews(String id, NewsVo newsVo) {
-		newsService.deleteSpecNews(id);
-		
-		NewsEntity newsEntity = new NewsEntity();
-		BeanUtils.copyProperties(newsVo, newsEntity);
-		newsEntity.setId(id);
-		newsEntity.setUpdTime(LocalDateTime.now());
-		
-		newsService.addNews(newsEntity);
+	public void deleteSingleNews(String id) {
+		newsService.deleteSingleNews(id);
 	}
 
 	/**
-	 * 查詢特定範圍內的訊息
+	 * 訊息專區-查詢特定範圍內的訊息
 	 */
 	@Override
-	public NewsRangeDto querySpecRangeNews(NewsSpecVo newsSpecVo) {
+	public NewsRangeDto querySpecRangeNews(NewsRangeVo newsSpecVo) {
 		List<NewsListBo> newsBoList = newsService.querySpecRangeNews(newsSpecVo.getCount(), newsSpecVo.getPage());
+		// 計算總頁數用
 		int totalCount = newsService.queryTotalNewsCount();
-		
+
 		// 先轉換過名稱
 		List<NewsListDto> newsDtoList = new ArrayList<>();
 		newsBoList.forEach((news) -> {
@@ -111,7 +130,7 @@ public class NewsFacadeImpl implements INewsFacade {
 			BeanUtils.copyProperties(news, target);
 			newsDtoList.add(target);
 		});
-		
+
 		NewsRangeDto rangeDto = new NewsRangeDto();
 		rangeDto.setTotal(totalCount);
 		rangeDto.setList(newsDtoList);
