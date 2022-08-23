@@ -3,14 +3,18 @@ package com.web.server.facade.impl;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.web.server.bo.MealBo;
+import com.web.server.dto.Menu4CusListDetailDto;
+import com.web.server.dto.Menu4CusListDto;
 import com.web.server.dto.MenuListDetailDto;
 import com.web.server.dto.MenuListDto;
 import com.web.server.dto.MenuSingleMealDto;
@@ -124,32 +128,46 @@ public class MenuFacadeImpl implements IMenuFacade {
 	 * 查詢特定種類的餐點
 	 */
 	@Override
-	public List<MenuListDto> queryMenuSpecCate(int categoryId) {
-		List<MenuListDto> menuList = new ArrayList<>();
-
+	public List<Menu4CusListDto> queryMenuSpecCate(int categoryId) {
 		List<MenuSpecCateEntity> entityList = menuService.queryMenuSpecCate(categoryId);
+		Map<String, Menu4CusListDto> menuMap = new HashMap<>();
 		entityList.forEach((entity) -> {
 			String subCateName = entity.getSubCateName();
-			MenuListDetailDto meal = new MenuListDetailDto();
+			Menu4CusListDetailDto meal = new Menu4CusListDetailDto();
 			meal.setName(entity.getMealName());
 			BeanUtils.copyProperties(entity, meal);
-
-			boolean hasList = false;
-			for (MenuListDto dto : menuList) {
-				if (subCateName.equals(dto.getSubCateName())) {
-					dto.getMeals().add(meal);
-					hasList = true;
+			
+			if(menuMap.containsKey(subCateName)) {
+				menuMap.get(subCateName).getMeals().add(meal);
+			}else {
+				Menu4CusListDto dto = new Menu4CusListDto();
+				List<Menu4CusListDetailDto> meals = new ArrayList<>();
+				meals.add(meal);
+				dto.setMeals(meals);
+				
+				if(subCateName == null) {
+					menuMap.put(null, dto);
+				}else {
+					menuMap.put(subCateName, dto);
 				}
 			}
-			if (!hasList) {
-				List<MenuListDetailDto> detail = new ArrayList<>();
-				detail.add(meal);
-				MenuListDto menu = new MenuListDto();
-				menu.setSubCateName(subCateName);
-				menu.setMeals(detail);
-				menuList.add(menu);
-			}
 		});
+		
+		List<Menu4CusListDto> menuList = new ArrayList<>();
+		Set<String> set = menuMap.keySet();
+		Iterator<String> it = set.iterator();
+		while(it.hasNext()) {
+			String subCateName = it.next();
+			List<Menu4CusListDetailDto> list = menuMap.get(subCateName).getMeals();
+			Comparator<Menu4CusListDetailDto> comparator = Comparator.comparing(Menu4CusListDetailDto::getSort);
+			list.sort(comparator);
+			
+			Menu4CusListDto dto = new Menu4CusListDto();
+			dto.setSubCateName(subCateName);
+			dto.setMeals(list);
+			menuList.add(dto);
+		}
+		
 		return menuList;
 	}
 

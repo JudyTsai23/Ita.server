@@ -80,7 +80,7 @@
 	
 	<!-- 查詢特定種類的餐點 (前台) -->
 	<select id="queryMenuSpecCate" resultMap="mybatis.mapper.menu.entity.menuSpecCateEntity">
-		SELECT sub.ID, sub.NAME, meal.NAME MEAL_NAME, meal.DESCRIPTION, meal.INGREDIENT, meal.NOTE, meal.PRICE, meal.IMAGE, meal.LIMIT_DATE 
+		SELECT sub.NAME, meal.NAME MEAL_NAME, meal.DESCRIPTION, meal.INGREDIENT, meal.NOTE, meal.PRICE, meal.IMAGE, meal.LIMIT_DATE , meal.SORT
 		FROM MEALS meal
 		LEFT JOIN SUB_CATEGORY sub ON meal.SUB_CATEGORY = sub.ID
 		WHERE meal.CATEGORY = #{categoryId} AND meal.IS_PUBLIC = 1 AND (meal.LIMIT_DATE >= #{today} OR meal.LIMIT_DATE IS NULL) ORDER BY meal.SORT

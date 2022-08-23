@@ -2,6 +2,7 @@ package com.web.server.facade;
 
 import java.util.List;
 
+import com.web.server.dto.Menu4CusListDto;
 import com.web.server.dto.MenuListDto;
 import com.web.server.dto.MenuSingleMealDto;
 import com.web.server.vo.MenuSingleMealVo;
@@ -32,7 +33,7 @@ public interface IMenuFacade {
 	/**
 	 * 查詢特定種類的餐點列表
 	 */
-	List<MenuListDto> queryMenuSpecCate(int category);
+	List<Menu4CusListDto> queryMenuSpecCate(int category);
 
 	/**
 	 * 更新餐點順序

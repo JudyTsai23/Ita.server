@@ -2,23 +2,15 @@ package com.web.server.entity;
 
 public class MenuSpecCateEntity {
 
-	private int subCateId;			// 子類別ID
-	private String subCateName; 	// 子類別名稱
-	private String mealName;		// 餐點名稱
-	private String description;		// 餐點描述
-	private String ingredient;		// 內容物
-	private String note;			// 餐點提醒
-	private int price;				// 價格
-	private String image;			// 餐點圖片
-	private int limitDate;			// 期間限定的下架時間
-
-	public int getSubCateId() {
-		return subCateId;
-	}
-
-	public void setSubCateId(int subCateId) {
-		this.subCateId = subCateId;
-	}
+	private String subCateName; // 子類別名稱
+	private String mealName; // 餐點名稱
+	private String description; // 餐點描述
+	private String ingredient; // 內容物
+	private String note; // 餐點提醒
+	private int price; // 價格
+	private String image; // 餐點圖片
+	private int limitDate; // 期間限定的下架時間
+	private int sort;
 
 	public String getSubCateName() {
 		return subCateName;
@@ -83,4 +75,13 @@ public class MenuSpecCateEntity {
 	public void setLimitDate(int limitDate) {
 		this.limitDate = limitDate;
 	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
 }

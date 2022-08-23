@@ -23,7 +23,6 @@
 	
 	<!-- 特定種類餐點Entity -->
 	<resultMap id="menuSpecCateEntity" type="com.web.server.entity.MenuSpecCateEntity">
-		<result column="ID" property="subCateId" />
 		<result column="NAME" property="subCateName" />
 		<result column="MEAL_NAME" property="mealName" />
 		<result column="DESCRIPTION" property="description" />
@@ -32,6 +31,7 @@
 		<result column="PRICE" property="price" />
 		<result column="IMAGE" property="image" />
 		<result column="LIMIT_DATE" property="limitDate" />
+		<result column="SORT" property="sort" />
 	</resultMap>
 
 	<!-- 餐點分類Entity -->

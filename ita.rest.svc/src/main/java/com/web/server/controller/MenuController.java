@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.server.cnst.AppCode;
+import com.web.server.dto.Menu4CusListDto;
 import com.web.server.dto.MenuListDto;
 import com.web.server.dto.MenuSingleMealDto;
 import com.web.server.facade.IMenuFacade;
@@ -90,7 +91,7 @@ public class MenuController implements IRestBase {
 	 */
 	@GetMapping("/{categoryId}")
 	public RestResult queryMenu(@PathVariable int categoryId) {
-		List<MenuListDto> menuSpecCateMap = menuFacade.queryMenuSpecCate(categoryId);
+		List<Menu4CusListDto> menuSpecCateMap = menuFacade.queryMenuSpecCate(categoryId);
 		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), menuSpecCateMap);
 	}
 	
