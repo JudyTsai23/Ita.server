@@ -32,6 +32,7 @@ public class MenuController implements IRestBase {
 	private IMenuFacade menuFacade;
 	
 	/**
+	 * :/menu/meals/3
 	 * 查詢所有餐點 (後台-餐點管理)
 	 */
 	@GetMapping("/meals/{categoryId}")
@@ -41,6 +42,7 @@ public class MenuController implements IRestBase {
 	}
 	
 	/**
+	 * :/menu/meal/2207301748564
 	 * 查詢單一餐點 (後台-餐點修改)
 	 */
 	@GetMapping("/meal/{mealId}")
@@ -53,6 +55,7 @@ public class MenuController implements IRestBase {
 	}
 	
 	/**
+	 * :/menu/save
 	 * 儲存餐點修改(包含新增及修改)
 	 */
 	@PostMapping("/save")
@@ -62,6 +65,7 @@ public class MenuController implements IRestBase {
 	}
 	
 	/**
+	 * :/menu/2207301748564
 	 * 刪除單一餐點
 	 */
 	@DeleteMapping("/{mealId}")
@@ -71,6 +75,7 @@ public class MenuController implements IRestBase {
 	}
 	
 	/**
+	 * :/menu
 	 * 更新餐點順序
 	 */
 	@PutMapping
@@ -80,6 +85,7 @@ public class MenuController implements IRestBase {
 	}
 	
 	/**
+	 * :/menu/3
 	 * 查詢特定種類的餐點 for 前台
 	 */
 	@GetMapping("/{categoryId}")

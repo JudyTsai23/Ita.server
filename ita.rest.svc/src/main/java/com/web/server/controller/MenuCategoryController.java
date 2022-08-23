@@ -33,6 +33,7 @@ public class MenuCategoryController implements IRestBase {
 	private IMenuCategoryFacade menuCategoryFacade;
 	
 	/**
+	 * :/mealCate/cate
 	 * 查詢所有餐點類別
 	 */
 	@GetMapping("/cate")
@@ -42,6 +43,7 @@ public class MenuCategoryController implements IRestBase {
 	}
 	
 	/**
+	 * :/mealCate/sub
 	 * 查詢所有餐點子類別
 	 */
 	@GetMapping("/sub")
@@ -51,6 +53,7 @@ public class MenuCategoryController implements IRestBase {
 	}
 	
 	/**
+	 * :/mealCate/3
 	 * 查詢分類管理(特定分類)
 	 */
 	@GetMapping("/{categoryId}")
@@ -60,6 +63,7 @@ public class MenuCategoryController implements IRestBase {
 	}
 	
 	/**
+	 * :/mealCate
 	 * 查詢分類管理(所有)
 	 */
 	@GetMapping
@@ -70,6 +74,7 @@ public class MenuCategoryController implements IRestBase {
 	}
 	
 	/**
+	 * :/mealCate/save
 	 * 儲存設定分類修改(包含新增及修改)
 	 */
 	@PostMapping("/save")
@@ -79,6 +84,7 @@ public class MenuCategoryController implements IRestBase {
 	}
 	
 	/**
+	 * :/mealCate/3
 	 * 刪除分類
 	 */
 	@DeleteMapping("/{categoryId}")
@@ -89,6 +95,7 @@ public class MenuCategoryController implements IRestBase {
 	
 	
 	/**
+	 * :/mealCate/sub/2
 	 * 刪除子分類
 	 */
 	@DeleteMapping("/sub/{subCategoryId}")
@@ -98,6 +105,7 @@ public class MenuCategoryController implements IRestBase {
 	}
 	
 	/**
+	 * :/mealCate
 	 * 更新分類順序
 	 */
 	@PutMapping

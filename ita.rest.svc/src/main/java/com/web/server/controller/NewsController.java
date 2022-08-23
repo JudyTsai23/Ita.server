@@ -33,6 +33,7 @@ public class NewsController implements IRestBase {
 	private INewsFacade newsFacade;
 	
 	/**
+	 * :/news
 	 * 訊息管理-查詢
 	 */
 	@GetMapping
@@ -42,6 +43,7 @@ public class NewsController implements IRestBase {
 	}
 	
 	/**
+	 * :/news/mng/2208162115954
 	 * 訊息管理-查詢單一訊息詳細資訊
 	 */
 	@GetMapping("/mng/{id}")
@@ -51,6 +53,7 @@ public class NewsController implements IRestBase {
 	}
 	
 	/**
+	 * :/news/2208162115954
 	 * 訊息管理-刪除
 	 */
 	@DeleteMapping("/{id}")
@@ -60,6 +63,7 @@ public class NewsController implements IRestBase {
 	}
 	
 	/**
+	 * :/news/save
 	 * 訊息修改-儲存(包含新增及修改)
 	 */
 	@PostMapping("/save")
@@ -70,6 +74,7 @@ public class NewsController implements IRestBase {
 	
 	
 	/**
+	 * :/news/range
 	 * 訊息專區-查詢
 	 */
 	@PostMapping("/range")
@@ -79,6 +84,7 @@ public class NewsController implements IRestBase {
 	}
 
 	/**
+	 * :/news/2208162115954
 	 * 訊息專區-查詢特定一筆訊息
 	 */
 	@GetMapping("/{id}")
