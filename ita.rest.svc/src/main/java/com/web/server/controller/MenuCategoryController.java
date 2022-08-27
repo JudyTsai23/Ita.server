@@ -1,7 +1,6 @@
 package com.web.server.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.server.cnst.AppCode;
 import com.web.server.dto.MenuCategoryDto;
 import com.web.server.dto.MenuCategoryInfoDto;
+import com.web.server.dto.MenuSubCategoryDto;
 import com.web.server.facade.IMenuCategoryFacade;
 import com.web.server.rest.IRestBase;
 import com.web.server.rest.RestResult;
@@ -48,8 +48,8 @@ public class MenuCategoryController implements IRestBase {
 	 */
 	@GetMapping("/sub")
 	public RestResult queryMenuSubCategory() {
-		Map<Integer, List<String>> subCateMap = menuCategoryFacade.querySubCategory();
-		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), subCateMap);
+		List<MenuSubCategoryDto> subCateList = menuCategoryFacade.querySubCategory();
+		return buildResult(AppCode.SERVER.SUCCESS.QUERY_SUCCESS.getCode(), subCateList);
 	}
 	
 	/**

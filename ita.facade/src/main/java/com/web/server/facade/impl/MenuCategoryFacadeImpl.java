@@ -3,8 +3,10 @@ package com.web.server.facade.impl;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import com.web.server.bo.MenuSubCategoryBo;
 import com.web.server.cnst.AppCode;
 import com.web.server.dto.MenuCategoryDto;
 import com.web.server.dto.MenuCategoryInfoDto;
+import com.web.server.dto.MenuSubCategoryDetailDto;
+import com.web.server.dto.MenuSubCategoryDto;
 import com.web.server.dto.MenuSubCategoryInfoDto;
 import com.web.server.entity.SortEntity;
 import com.web.server.facade.IMenuCategoryFacade;
@@ -49,8 +53,48 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 	 * 查詢所有餐點子類別
 	 */
 	@Override
-	public Map<Integer, List<String>> querySubCategory() {
-		return menuCategoryService.querySubCategory();
+	public List<MenuSubCategoryDto> querySubCategory() {
+		List<MenuSubCategoryBo> entityList = menuCategoryService.querySubCategory(); 
+		Map<Integer, MenuSubCategoryDto> subCateMap = new HashMap<>();
+		entityList.forEach((entity) -> {
+			int categoryId = entity.getCategoryId();
+			MenuSubCategoryDetailDto subCategory = new MenuSubCategoryDetailDto();
+			BeanUtils.copyProperties(entity, subCategory);
+			
+			if(subCateMap.containsKey(categoryId)) {
+				subCateMap.get(categoryId).getSubCateList().add(subCategory);
+			}else {
+				MenuSubCategoryDto dto = new MenuSubCategoryDto();
+				List<MenuSubCategoryDetailDto> subCateList = new ArrayList<>();
+				subCateList.add(subCategory);
+				dto.setSubCateList(subCateList);
+				dto.setCategoryId(categoryId);
+				
+				if(categoryId > 0) {
+					subCateMap.put(categoryId, dto);
+				}
+			}
+		});
+		
+		List<MenuSubCategoryDto> subCateList = new ArrayList<>();
+		Set<Integer> set = subCateMap.keySet();
+		Iterator<Integer> it = set.iterator();
+		while(it.hasNext()) {
+			int categoryId = it.next();
+			List<MenuSubCategoryDetailDto> list = subCateMap.get(categoryId).getSubCateList();
+			Comparator<MenuSubCategoryDetailDto> comparator = Comparator.comparing(MenuSubCategoryDetailDto::getSort);
+			list.sort(comparator);
+			
+			MenuSubCategoryDto dto = new MenuSubCategoryDto();
+			dto.setCategoryId(categoryId);
+			dto.setSubCateList(list);
+			subCateList.add(dto);
+		}
+		
+		Comparator<MenuSubCategoryDto> comparator = Comparator.comparing(MenuSubCategoryDto::getCategoryId);
+		subCateList.sort(comparator);
+		
+		return subCateList; 
 	}
 	
 	/**

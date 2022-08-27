@@ -9,7 +9,7 @@
 	
 	<!-- 查詢所有餐點子類別 -->
 	<select id="querySubCategory" resultMap="mybatis.mapper.menu.entity.menuSubCategoryEntity">
-		SELECT NAME, CATEGORY_ID FROM SUB_CATEGORY ORDER BY CATEGORY_ID
+		SELECT * FROM SUB_CATEGORY ORDER BY CATEGORY_ID, SORT
 	</select>
 	
 	<!-- 查詢分類管理(所有分類) -->

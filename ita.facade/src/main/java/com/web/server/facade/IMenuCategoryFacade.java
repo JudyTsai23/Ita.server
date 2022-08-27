@@ -1,10 +1,10 @@
 package com.web.server.facade;
 
 import java.util.List;
-import java.util.Map;
 
 import com.web.server.dto.MenuCategoryDto;
 import com.web.server.dto.MenuCategoryInfoDto;
+import com.web.server.dto.MenuSubCategoryDto;
 import com.web.server.vo.MenuCategoryInfoVo;
 import com.web.server.vo.SortVo;
 
@@ -18,7 +18,7 @@ public interface IMenuCategoryFacade {
 	/**
 	 * 查詢所有餐點子類別
 	 */
-	Map<Integer, List<String>> querySubCategory();
+	List<MenuSubCategoryDto> querySubCategory();
 	
 	/**
 	 * 查詢分類管理

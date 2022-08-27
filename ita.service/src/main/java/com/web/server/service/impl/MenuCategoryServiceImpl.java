@@ -1,9 +1,7 @@
 package com.web.server.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,21 +42,15 @@ public class MenuCategoryServiceImpl implements IMenuCategoryService {
 	 * 查詢所有餐點子類別
 	 */
 	@Override
-	public Map<Integer, List<String>> querySubCategory() {
-		List<MenuSubCategoryEntity> entityList = menuCategoryDao.querySubCategory();
-		Map<Integer, List<String>> subCateMap = new HashMap<>();
-		entityList.forEach((entity) -> {
-			int categoryId = entity.getCategoryId();
-			String subCateName = entity.getName();
-			if (subCateMap.containsKey(categoryId)) {
-				subCateMap.get(categoryId).add(subCateName);
-			} else {
-				List<String> subCate = new ArrayList<>();
-				subCate.add(subCateName);
-				subCateMap.put(categoryId, subCate);
-			}
+	public List<MenuSubCategoryBo> querySubCategory() {
+		List<MenuSubCategoryEntity> entityist = menuCategoryDao.querySubCategory();
+		List<MenuSubCategoryBo> boList = new ArrayList<>();
+		entityist.forEach((entity) -> {
+			MenuSubCategoryBo target = new MenuSubCategoryBo();
+			BeanUtils.copyProperties(entity, target);
+			boList.add(target);
 		});
-		return subCateMap;
+		return boList;
 	}
 	
 	/**

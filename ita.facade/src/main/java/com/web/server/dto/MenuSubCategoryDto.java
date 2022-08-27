@@ -1,23 +1,26 @@
 package com.web.server.dto;
 
+import java.util.List;
+
 public class MenuSubCategoryDto {
-	
-	private String name;		// 子類別中文名稱
-	private String categoryId;	// 類別ID
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getCategoryId() {
+
+	private int categoryId;
+	private List<MenuSubCategoryDetailDto> subCateList;
+
+	public int getCategoryId() {
 		return categoryId;
 	}
-	
-	public void setCategoryId(String categoryId) {
+
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
+
+	public List<MenuSubCategoryDetailDto> getSubCateList() {
+		return subCateList;
+	}
+
+	public void setSubCateList(List<MenuSubCategoryDetailDto> subCateList) {
+		this.subCateList = subCateList;
+	}
+
 }

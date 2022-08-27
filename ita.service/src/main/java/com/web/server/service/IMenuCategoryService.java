@@ -1,7 +1,6 @@
 package com.web.server.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.web.server.bo.MenuCategoryBo;
 import com.web.server.bo.MenuCategoryInfoBo;
@@ -18,7 +17,7 @@ public interface IMenuCategoryService {
 	/**
 	 * 查詢所有餐點子類別
 	 */
-	Map<Integer, List<String>> querySubCategory();
+	List<MenuSubCategoryBo> querySubCategory();
 	
 	/**
 	 * 查詢分類管理
