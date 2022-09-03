@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.feedback.entity">
+
+	<resultMap id="feedbackEntity" type="com.web.server.entity.FeedbackEntity">
+		<result column="NAME" property="customerName" />
+		<result column="PHONE" property="phone" />
+		<result column="EMAIL" property="email" />
+		<result column="SUBSCRIPTION" property="subscription" />
+		<result column="TOPIC" property="topic"  typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+		<result column="DATE" property="date" />
+		<result column="PERIOD" property="period"  typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+		<result column="OPINION" property="opinion" />
+		<result column="RATING" property="rating" />
+	</resultMap>
+	
+</mapper>
