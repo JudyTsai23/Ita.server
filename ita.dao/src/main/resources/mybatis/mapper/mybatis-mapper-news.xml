@@ -4,7 +4,7 @@
 
 	<!-- 訊息管理-查詢 -->
 	<select id="queryNews" resultMap="mybatis.mapper.news.entity.newsEntity">
-		SELECT * FROM NEWS ORDER BY PUBLISH_DATE
+		SELECT * FROM NEWS ORDER BY PUBLISH_DATE DESC
 	</select>
 	
 	<!-- 訊息管理-查詢單一訊息詳細資訊 -->
