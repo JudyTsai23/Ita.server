@@ -13,7 +13,6 @@ public class NewsEntity {
 	private int publishDate; // 發布時間
 	private String isPublic; // 是否公開
 	private String isTop; // 是否為置頂訊息
-	private String updUser; // 異動人員
 	private String updTime; // 異動時間
 
 	public String getId() {
@@ -86,14 +85,6 @@ public class NewsEntity {
 
 	public void setIsTop(String isTop) {
 		this.isTop = isTop;
-	}
-
-	public String getUpdUser() {
-		return updUser;
-	}
-
-	public void setUpdUser(String updUser) {
-		this.updUser = updUser;
 	}
 
 	public String getUpdTime() {

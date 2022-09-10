@@ -11,7 +11,6 @@ public class NewsVo {
 	private int publishDate; // 發布時間
 	private boolean isPublic; // 是否公開
 	private boolean isTop; // 是否為置頂訊息
-	private String updUser; // 異動人員
 	private String updTime; // 異動時間
 
 	public String getId() {
@@ -84,14 +83,6 @@ public class NewsVo {
 
 	public void setTop(boolean isTop) {
 		this.isTop = isTop;
-	}
-
-	public String getUpdUser() {
-		return updUser;
-	}
-
-	public void setUpdUser(String updUser) {
-		this.updUser = updUser;
 	}
 
 	public String getUpdTime() {
