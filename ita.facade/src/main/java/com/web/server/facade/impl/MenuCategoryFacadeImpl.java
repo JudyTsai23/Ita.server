@@ -208,7 +208,7 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 			// 若分類ID為0，則新增
 			// 檢查分類的中英文名稱是否有重複，有重複的話不得新增
 			if(slugCount > 0) {
-				throw new RuntimeException(AppCode.SERVER.ERROR.DATA_ERROR.getCode() + "-分類中英文名稱不得重複");
+				throw new RuntimeException(AppCode.SERVER.ERROR.DATA_ERROR.getCode() + "-Slug 不得重複");
 			}
 			if(zhNameCount > 0) {
 				throw new RuntimeException(AppCode.SERVER.ERROR.DATA_ERROR.getCode() + "-中文名稱不得重複");
