@@ -92,5 +92,15 @@ public interface IMenuCategoryDao {
 	 * 更新分類順序
 	 */
 	void updateCategorySort(@Param(value = "categoryList") List<SortEntity> categorySort);
+	
+	/**
+	 * 查詢有幾筆重複的類別slug
+	 */
+	int queryDuplicateSlugCount(@Param(value = "slug") String categoryName);
+	
+	/**
+	 * 查詢有幾筆重複的類別中文名稱
+	 */
+	int queryDuplicateZhNameCount(@Param(value = "zhName") String categoryZhName);
 
 }

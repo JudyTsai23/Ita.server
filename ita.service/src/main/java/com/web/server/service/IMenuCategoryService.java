@@ -78,4 +78,14 @@ public interface IMenuCategoryService {
 	 * 更新分類順序
 	 */
 	void updateCategorySort(List<SortEntity> entityList);
+	
+	/**
+	 * 查詢有幾筆重複的類別slug
+	 */
+	int queryDuplicateSlugCount(String categoryName);
+	
+	/**
+	 * 查詢有幾筆重複的類別中文名稱
+	 */
+	int queryDuplicateZhNameCount(String zhName);
 }

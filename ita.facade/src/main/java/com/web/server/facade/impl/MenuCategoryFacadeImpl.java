@@ -155,8 +155,19 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 		MenuCategoryBo updCateBo = new MenuCategoryBo();
 		BeanUtils.copyProperties(categoryInfoVo, updCateBo);
 		
+		int slugCount = menuCategoryService.queryDuplicateSlugCount(categoryInfoVo.getName());
+		int zhNameCount = menuCategoryService.queryDuplicateZhNameCount(categoryInfoVo.getZhName());
+		
 		if(categoryId > 0) {
 			// 若分類ID不為0，則為修改
+			// 檢查分類的中英文名稱是否有重複，有重複的話不得新增
+			if(slugCount > 1) {
+				throw new RuntimeException(AppCode.SERVER.ERROR.DATA_ERROR.getCode() + "-分類中英文名稱不得重複");
+			}
+			if(zhNameCount > 1) {
+				throw new RuntimeException(AppCode.SERVER.ERROR.DATA_ERROR.getCode() + "-中文名稱不得重複");
+			}
+						
 			// 設定分類ID
 			updCateBo.setId(categoryId);
 			// 組出子分類List
@@ -195,6 +206,14 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
  			
 		}else {
 			// 若分類ID為0，則新增
+			// 檢查分類的中英文名稱是否有重複，有重複的話不得新增
+			if(slugCount > 0) {
+				throw new RuntimeException(AppCode.SERVER.ERROR.DATA_ERROR.getCode() + "-分類中英文名稱不得重複");
+			}
+			if(zhNameCount > 0) {
+				throw new RuntimeException(AppCode.SERVER.ERROR.DATA_ERROR.getCode() + "-中文名稱不得重複");
+			}
+			
 			// 查詢最新的分類ID
 			int lastestCategoryId = menuCategoryService.queryMaxCategoryId() + 1;
 			// 設定分類ID

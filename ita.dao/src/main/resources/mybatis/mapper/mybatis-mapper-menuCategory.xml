@@ -125,4 +125,14 @@
 		</foreach>
 	</update>
 	
+	<!-- 查詢有幾筆重複的類別slug -->
+	<select id="queryDuplicateSlugCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM CATEGORY WHERE NAME = #{slug}
+	</select>
+	
+	<!-- 查詢有幾筆重複的類別中文名稱 -->
+	<select id="queryDuplicateZhNameCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM CATEGORY WHERE ZH_NAME = #{zhName}
+	</select>
+	
 </mapper>

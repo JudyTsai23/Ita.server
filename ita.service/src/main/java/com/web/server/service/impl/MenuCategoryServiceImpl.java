@@ -183,4 +183,20 @@ public class MenuCategoryServiceImpl implements IMenuCategoryService {
 	public void updateCategorySort(List<SortEntity> entityList) {
 		menuCategoryDao.updateCategorySort(entityList);
 	}
+	
+	/**
+	 * 查詢有幾筆重複的類別slug
+	 */
+	@Override
+	public int queryDuplicateSlugCount(String categoryName) {
+		return menuCategoryDao.queryDuplicateSlugCount(categoryName);
+	}
+	
+	/**
+	 * 查詢有幾筆重複的類別中文名稱
+	 */
+	@Override
+	public int queryDuplicateZhNameCount(String categoryZhName) {
+		return menuCategoryDao.queryDuplicateZhNameCount(categoryZhName);
+	}
 }
