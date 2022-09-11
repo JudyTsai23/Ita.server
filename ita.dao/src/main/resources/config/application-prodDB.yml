@@ -2,9 +2,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://gnaypma3gwqw0slc:f53z2mp8cugc71ja@migae5o25m2psr4q.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/jfhb8hy8fbs8ac64
-    username: gnaypma3gwqw0slc
-    password: f53z2mp8cugc71ja
+    url: jdbc:mysql://b5d0c81094add9:881afd78@us-cdbr-east-06.cleardb.net/heroku_58f0d5bebcbb63c?reconnect=true
+    username: b5d0c81094add9
+    password: 881afd78
 
 # mybatis
 mybatis:
