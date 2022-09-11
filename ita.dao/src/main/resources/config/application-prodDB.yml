@@ -3,8 +3,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://gnaypma3gwqw0slc:f53z2mp8cugc71ja@migae5o25m2psr4q.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/jfhb8hy8fbs8ac64
-    username: ita
-    password: bagel
+    username: gnaypma3gwqw0slc
+    password: f53z2mp8cugc71ja
 
 # mybatis
 mybatis:
