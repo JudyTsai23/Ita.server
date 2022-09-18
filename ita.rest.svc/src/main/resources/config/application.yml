@@ -3,8 +3,8 @@ spring:
     group:
       dev:
         - dev
-        #- devDB
-        - prodDB
+        - devDB
+        #- prodDB
         server:
   port: 8080
   servlet:
