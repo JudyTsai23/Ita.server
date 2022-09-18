@@ -196,9 +196,8 @@ public class MenuCategoryFacadeImpl implements IMenuCategoryFacade {
 				}
 			}
 			// update
-			if(updateSubCateBoList.size() > 0) {
-				menuCategoryService.updateCateInfo(updCateBo, updateSubCateBoList);
-			}
+			menuCategoryService.updateCateInfo(updCateBo, updateSubCateBoList);
+			
 			// insert
 			if(insertSubCateBoList.size() > 0) {
 				menuCategoryService.insertSubCategoryInfo(insertSubCateBoList);

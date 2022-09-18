@@ -87,13 +87,19 @@ public class MenuCategoryServiceImpl implements IMenuCategoryService {
 		// 修改分類
 		menuCategoryDao.updateCategoryInfo(categoryEntity);
 		// 修改子分類
-		List<MenuSubCategoryEntity> entityList = new ArrayList<>();
-		subCateBoList.forEach((bo) -> {
-			MenuSubCategoryEntity subCateEntity = new MenuSubCategoryEntity();
-			BeanUtils.copyProperties(bo, subCateEntity);
-			entityList.add(subCateEntity);
-		});
-		menuCategoryDao.updateSubCategoryInfo(entityList);
+		if(subCateBoList.size() > 0) {
+			// 若有子分類就修改
+			List<MenuSubCategoryEntity> entityList = new ArrayList<>();
+			subCateBoList.forEach((bo) -> {
+				MenuSubCategoryEntity subCateEntity = new MenuSubCategoryEntity();
+				BeanUtils.copyProperties(bo, subCateEntity);
+				entityList.add(subCateEntity);
+			});
+			menuCategoryDao.updateSubCategoryInfo(entityList);
+		}else {
+			// 若沒有子分類則把現有的都刪除
+			deleteSubCateByCate(categoryBo.getId());
+		}
 	}
 	
 	/**
