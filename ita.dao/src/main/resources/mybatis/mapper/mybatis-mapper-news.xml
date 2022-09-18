@@ -37,7 +37,6 @@
 			#{newsEntity.publishDate},
 			#{newsEntity.isPublic},
 			#{newsEntity.isTop},
-			#{newsEntity.updUser},
 			#{newsEntity.updTime}
 		)
 	</insert>
@@ -53,7 +52,6 @@
 			PUBLISH_DATE = #{news.publishDate},
 			IS_PUBLIC = #{news.isPublic},
 			IS_TOP = #{news.isTop},
-			UPD_USER = #{news.updUser},
 			UPD_TIME = #{news.updTime}
 		WHERE ID = #{news.id}
 	</update>

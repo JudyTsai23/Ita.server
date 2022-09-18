@@ -13,7 +13,6 @@
 		<result column="PUBLISH_DATE" property="publishDate" />
 		<result column="IS_PUBLIC" property="isPublic" />
 		<result column="IS_TOP" property="isTop" />
-		<result column="UPD_USER" property="updUser" />
 		<result column="UPD_TIME" property="updTime" />
 	</resultMap>
 
