@@ -49,6 +49,7 @@ public class MenuFacadeImpl implements IMenuFacade {
 			meal.setPrice(bo.getPrice());
 			meal.setImage(bo.getImage());
 			meal.setLimitDate(bo.getLimitDate());
+			meal.setPublic("1".equals(bo.getIsPublic()) ? true : false);
 			meal.setSort(bo.getSort());
 			
 			int subCategoryId = bo.getSubCategory();

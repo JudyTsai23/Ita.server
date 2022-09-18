@@ -7,6 +7,7 @@ public class MenuListDetailDto {
 	private int price; // 價格
 	private String image; // 餐點圖片
 	private int limitDate; // 期間限定的下架日期
+	private boolean isPublic; // 是否公開
 	private int sort; // 餐點順序
 
 	public String getId() {
@@ -47,6 +48,14 @@ public class MenuListDetailDto {
 
 	public void setLimitDate(int limitDate) {
 		this.limitDate = limitDate;
+	}
+
+	public boolean isPublic() {
+		return isPublic;
+	}
+
+	public void setPublic(boolean isPublic) {
+		this.isPublic = isPublic;
 	}
 
 	public int getSort() {
