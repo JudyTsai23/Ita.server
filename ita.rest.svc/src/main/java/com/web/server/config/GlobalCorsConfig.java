@@ -39,7 +39,7 @@ public class GlobalCorsConfig {
                         //允許使用那些請求方式
                         .allowedMethods("*")
                         //允許哪些Header
-                        .allowedHeaders("*");
+                        .allowedHeaders("/*");
             }
         };
     }
