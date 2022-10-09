@@ -14,4 +14,14 @@
 		<result column="RATING" property="rating" />
 	</resultMap>
 	
+	<resultMap id="feedbackDetailEntity" type="com.web.server.entity.FeedbackDetailEntity">
+		<result column="MONTH" property="month" />
+		<result column="COUNT" property="count" />
+	</resultMap>
+	
+	<resultMap id="feedbackRateEntity" type="com.web.server.entity.FeedbackRateEntity">
+		<result column="RATING" property="rating" />
+		<result column="COUNT" property="count" />
+	</resultMap>
+	
 </mapper>

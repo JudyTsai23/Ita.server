@@ -28,4 +28,23 @@
 		)
 	</insert>
 	
+	<!-- 查詢總回饋數量 by 月份 -->
+	<select id="queryTotalCount" resultMap="mybatis.mapper.feedback.entity.feedbackDetailEntity">
+		SELECT MONTH(DATE) AS MONTH, COUNT(*) AS COUNT FROM FEEDBACK
+		GROUP BY MONTH(DATE) ORDER BY MONTH ASC
+	</select>
+	
+	<!-- 查詢用餐時段 by 月份 -->
+	<select id="queryPeriodCount" resultMap="mybatis.mapper.feedback.entity.feedbackDetailEntity">
+		SELECT MONTH(DATE) AS MONTH, COUNT(*) AS COUNT FROM FEEDBACK
+		WHERE PERIOD = #{period}
+		GROUP BY MONTH(DATE) ORDER BY MONTH ASC
+	</select>
+	
+	<!-- 查詢分數 by rate -->
+	<select id="queryRating" resultMap="mybatis.mapper.feedback.entity.feedbackRateEntity">
+		SELECT RATING, COUNT(*) AS COUNT FROM  FEEDBACK
+		GROUP BY RATING ORDER BY RATING
+	</select>
+	
 </mapper>
