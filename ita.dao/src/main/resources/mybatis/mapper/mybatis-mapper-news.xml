@@ -24,7 +24,6 @@
 			PUBLISH_DATE,
 			IS_PUBLIC,
 			IS_TOP,
-			UPD_USER,
 			UPD_TIME
 		)
 		VALUES (
