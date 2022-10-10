@@ -10,6 +10,7 @@ public class Menu4CusListDetailDto {
 	private String ingredient;
 	private int limitDate; // 期間限定的下架日期
 	private int sort; // 餐點順序
+	private int subCateSort; // 餐點子類別順序
 
 	public String getName() {
 		return name;
@@ -73,6 +74,14 @@ public class Menu4CusListDetailDto {
 
 	public void setSort(int sort) {
 		this.sort = sort;
+	}
+
+	public int getSubCateSort() {
+		return subCateSort;
+	}
+
+	public void setSubCateSort(int subCateSort) {
+		this.subCateSort = subCateSort;
 	}
 
 }

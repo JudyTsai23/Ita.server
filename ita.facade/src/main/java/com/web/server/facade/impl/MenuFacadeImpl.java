@@ -60,6 +60,7 @@ public class MenuFacadeImpl implements IMenuFacade {
 				subCateMeal.setSubCateId(bo.getSubCategory());
 				String subCateName = bo.getSubCategoryName() != null ? bo.getSubCategoryName() : "";
 				subCateMeal.setSubCateName(subCateName);
+				subCateMeal.setSubCateSort(bo.getSubCateSort());
 				
 				List<MenuListDetailDto> mealList = new ArrayList<>();
 				mealList.add(meal);
@@ -70,7 +71,7 @@ public class MenuFacadeImpl implements IMenuFacade {
 		});
 		
 		List<MenuListDto> menuDtoList = new ArrayList<>(mealMap.values());
-		Comparator<MenuListDto> comparator = Comparator.comparing(MenuListDto::getSubCateId);
+		Comparator<MenuListDto> comparator = Comparator.comparing(MenuListDto::getSubCateSort);
 		menuDtoList.sort(comparator);
 		
 		return menuDtoList;
@@ -166,8 +167,12 @@ public class MenuFacadeImpl implements IMenuFacade {
 			Menu4CusListDto dto = new Menu4CusListDto();
 			dto.setSubCateName(subCateName);
 			dto.setMeals(list);
+			dto.setSubCateSort(list.get(0).getSubCateSort());
 			menuList.add(dto);
 		}
+		
+		Comparator<Menu4CusListDto> comparator = Comparator.comparing(Menu4CusListDto::getSubCateSort);
+		menuList.sort(comparator);
 		
 		return menuList;
 	}

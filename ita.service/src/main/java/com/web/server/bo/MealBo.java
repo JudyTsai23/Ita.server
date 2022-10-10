@@ -7,6 +7,7 @@ public class MealBo {
 	private String id; // 餐點流水號
 	private int category; // 餐點種類
 	private int subCategory; // 餐點次分類
+	private int subCateSort; // 次分類順序
 	private String subCategoryName; // 餐點次分類名稱
 	private String name; // 餐點名稱
 	private String description; // 餐點描述
@@ -42,6 +43,14 @@ public class MealBo {
 
 	public void setSubCategory(int subCategory) {
 		this.subCategory = subCategory;
+	}
+	
+	public int getSubCateSort() {
+		return subCateSort;
+	}
+
+	public void setSubCateSort(int subCateSort) {
+		this.subCateSort = subCateSort;
 	}
 
 	public String getSubCategoryName() {

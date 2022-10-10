@@ -8,6 +8,7 @@
 		<result column="CATEGORY" property="category" />
 		<result column="SUB_CATEGORY_NAME" property="subCategoryName" />
 		<result column="SUB_CATEGORY" property="subCategory" />
+		<result column="SUBCATE_SORT" property="subCateSort" />
 		<result column="NAME" property="name" />
 		<result column="DESCRIPTION" property="description" />
 		<result column="INGREDIENT" property="ingredient" />
@@ -24,6 +25,7 @@
 	<!-- 特定種類餐點Entity -->
 	<resultMap id="menuSpecCateEntity" type="com.web.server.entity.MenuSpecCateEntity">
 		<result column="NAME" property="subCateName" />
+		<result column="SUBCATE_SORT" property="subCateSort" />
 		<result column="MEAL_NAME" property="mealName" />
 		<result column="DESCRIPTION" property="description" />
 		<result column="INGREDIENT" property="ingredient" />

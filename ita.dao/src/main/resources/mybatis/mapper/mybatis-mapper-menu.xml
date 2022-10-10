@@ -4,7 +4,7 @@
 
 	<!-- 查詢所有餐點 (後台-餐點管理) -->
 	<select id="queryMeals" resultMap="mybatis.mapper.menu.entity.mealEntity">
-		SELECT sub.NAME SUB_CATEGORY_NAME, meal.* FROM MEALS meal 
+		SELECT sub.NAME SUB_CATEGORY_NAME, sub.SORT SUBCATE_SORT, meal.* FROM MEALS meal 
 		LEFT JOIN SUB_CATEGORY sub on meal.SUB_CATEGORY = sub.ID
 		where meal.CATEGORY = #{categoryId} order by meal.SUB_CATEGORY, meal.SORT
 	</select>
@@ -80,10 +80,10 @@
 	
 	<!-- 查詢特定種類的餐點 (前台) -->
 	<select id="queryMenuSpecCate" resultMap="mybatis.mapper.menu.entity.menuSpecCateEntity">
-		SELECT sub.NAME, meal.NAME MEAL_NAME, meal.DESCRIPTION, meal.INGREDIENT, meal.NOTE, meal.PRICE, meal.IMAGE, meal.LIMIT_DATE , meal.SORT
+		SELECT sub.NAME, sub.SORT SUBCATE_SORT, meal.NAME MEAL_NAME, meal.DESCRIPTION, meal.INGREDIENT, meal.NOTE, meal.PRICE, meal.IMAGE, meal.LIMIT_DATE , meal.SORT
 		FROM MEALS meal
 		LEFT JOIN SUB_CATEGORY sub ON meal.SUB_CATEGORY = sub.ID
-		WHERE meal.CATEGORY = #{categoryId} AND meal.IS_PUBLIC = 1 AND (meal.LIMIT_DATE >= #{today} OR meal.LIMIT_DATE IS NULL OR meal.LIMIT_DATE = 0) ORDER BY meal.SORT
+		WHERE meal.CATEGORY = #{categoryId} AND meal.IS_PUBLIC = 1 AND (meal.LIMIT_DATE >= #{today} OR meal.LIMIT_DATE IS NULL OR meal.LIMIT_DATE = 0) ORDER BY sub.SORT, meal.SORT
 	</select>
 
 </mapper>

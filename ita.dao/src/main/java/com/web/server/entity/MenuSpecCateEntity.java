@@ -3,6 +3,7 @@ package com.web.server.entity;
 public class MenuSpecCateEntity {
 
 	private String subCateName; // 子類別名稱
+	private int subCateSort; // 子類別順序
 	private String mealName; // 餐點名稱
 	private String description; // 餐點描述
 	private String ingredient; // 內容物
@@ -18,6 +19,14 @@ public class MenuSpecCateEntity {
 
 	public void setSubCateName(String subCateName) {
 		this.subCateName = subCateName;
+	}
+	
+	public int getSubCateSort() {
+		return subCateSort;
+	}
+
+	public void setSubCateSort(int subCateSort) {
+		this.subCateSort = subCateSort;
 	}
 
 	public String getMealName() {
